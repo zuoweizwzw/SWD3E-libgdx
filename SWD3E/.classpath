@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre7"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gdx"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gdx-backend-lwjgl"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gdx-box2d"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gdx-bullet"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gdx-freetype"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gdx-jnigen"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gdx-tools"/>
+	<classpathentry exported="true" kind="con" path="GROOVY_SUPPORT"/>
+	<classpathentry exported="true" kind="con" path="GROOVY_DSL_SUPPORT"/>
+	<classpathentry kind="lib" path="lib/groovy-2.3.6-sources.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
