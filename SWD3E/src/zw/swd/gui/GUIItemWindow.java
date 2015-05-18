@@ -12,9 +12,11 @@ public class GUIItemWindow extends Paper{
 
 	GUIItemList list;
 	Picture tabs=new Picture();
+	GameModel gameModel;
 	public GUIItemWindow(GameModel gameModel) {
 		// TODO Auto-generated constructor stub
 		this.setPosition(208, 40);
+		this.gameModel=gameModel;
 		this.setName("guiitemwindow");
 		this.setSize(304, 353);
 		list=new GUIItemList(gameModel);
@@ -134,6 +136,15 @@ public class GUIItemWindow extends Paper{
 		tabs.addActor(tab3);
 		
 		this.addActor(tabs);
+		
+		this.addActor(list);
+		this.fillData(gameModel);
+		list.scroll.resetRect();
+	}
+
+	private void fillData(GameModel gameModel) {
+		// TODO Auto-generated method stub
+		this.list.fillData(gameModel);
 	}
 
 	@Override

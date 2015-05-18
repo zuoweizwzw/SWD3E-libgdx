@@ -63,7 +63,7 @@ public class App extends Game{
 //		SceneEventsLoader.loadScripts("methods");
 		FaceLoader.loadFaces();
 //		MagicLoader.loadMagics("51","53");
-		ItemLoader.loadItem("0017");
+		ItemLoader.loadItems("0017","0004");
 //		FightMapLoader.loadFightMap("1-1");
 //		FightRoleLoader.loadFightRole("001");
 //		FightRoleLoader.loadFightRole("002");

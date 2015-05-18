@@ -59,7 +59,12 @@ public class TestUtils {
 	{
 		GameModel gameModel=new GameModel();
 		gameModel.members.add(generateRoleModel("001"));
+		for(int i=0;i<16;i++)
+		{
 		GameItem gameItem=new GameItem(Cache.items.get("0017"));
+		gameModel.items.add(gameItem);
+		}
+		GameItem gameItem=new GameItem(Cache.items.get("0004"));
 		gameModel.items.add(gameItem);
 		return gameModel;
 	}

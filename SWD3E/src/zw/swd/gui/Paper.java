@@ -145,7 +145,7 @@ public abstract class Paper extends Group implements AnimatedActor{
 		batch.begin();
 		
 	}
-	
+	//no mouseIn assert	
 	public void  onClickEvent(int button)
 	{
 		for(Paper paper:this.getAllPapers())

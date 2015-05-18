@@ -52,4 +52,12 @@ public class ItemLoader {
 		Cache.items.put(itemModel.code, itemModel);
 		return itemModel;
 	}
+	
+	public static void loadItems(String... codes)
+	{
+		for(String code:codes)
+		{
+			loadItem(code);
+		}
+	}
 }
