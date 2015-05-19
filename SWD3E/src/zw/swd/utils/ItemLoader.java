@@ -49,6 +49,7 @@ public class ItemLoader {
 			e.printStackTrace();
 		}
 		Animation animation=new Animation(Config.resPath+"/"+itemModel.resPath);
+		itemModel.animation=animation;
 		Cache.items.put(itemModel.code, itemModel);
 		return itemModel;
 	}

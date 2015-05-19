@@ -28,11 +28,13 @@ public class GuiMgr extends Stage {
 	}
 
 	
-	public Paper findActorByName(String name)
+	public <T extends Paper> T findActorByName(String name)
 	{
-		if(getRoot().findActor(name) instanceof Paper) return getRoot().findActor(name);
-		else return null;
+		if(getRoot().findActor(name) instanceof Paper) return (T)getRoot().findActor(name);
+		else return  null;
 	}
+	
+	
 	
 	public ArrayList<Paper> getAllPapers()
 	{

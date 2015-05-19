@@ -52,10 +52,10 @@ public class SceneScreen extends SWDScreen {
 
 	public SceneMap sceneMap;
 	public SceneActor actor;
-	public int gameState = 0;//0普通状态，1执行脚本状态，2GUI状态
+	public int gameState = 0;//0普通状态，1执行脚本状态，2GUI状态，3GUI动画状态
 
 	SceneScript currentScript;
-	
+	GUI gui;
 	public SceneScreen() {
 		// TODO Auto-generated constructor stub
 		super();
@@ -66,7 +66,9 @@ public class SceneScreen extends SWDScreen {
 		actor.setCoord(320, 240);
 
 		this.sceneMap.sprites.addActor(actor);
-		
+		gui=new GUI();
+		this.guiMgr.addActor(gui);
+		gui.setVisible(false);
 		
 	}
 
@@ -128,11 +130,10 @@ public class SceneScreen extends SWDScreen {
 			{
 				if(this.gameState==0)
 				{
+					if(this.gui.itempane.isActing) return false;
 					this.gameState=2;
-					GUI gui=new GUI();
-					this.guiMgr.addActor(gui);
-					Menu menu=gui.findActor("menu");
-					menu.item.clickEvent.onClick(Buttons.LEFT);
+					this.gui.show();
+					
 				}
 			}
 		}
@@ -157,14 +158,7 @@ public class SceneScreen extends SWDScreen {
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		// TODO Auto-generated method stub
-		if (button == Buttons.RIGHT) {
-			stopActorMove();
-			if(gameState==2)
-			{
-				this.guiMgr.removeActorByName("gui");
-				this.gameState=0;
-			}
-		}
+		
 		return false;
 	}
 
@@ -179,6 +173,17 @@ public class SceneScreen extends SWDScreen {
 				{
 					if(paper.isVisible()) paper.onClickEvent(button);
 				}
+			}
+		}
+		
+		if (button == Buttons.RIGHT) {
+			stopActorMove();
+			if(gameState==2)
+			{
+//				this.guiMgr.removeActorByName("gui");
+				if(gui.itempane.isActing) return false;
+				gui.hide();
+				this.gameState=0;
 			}
 		}
 		

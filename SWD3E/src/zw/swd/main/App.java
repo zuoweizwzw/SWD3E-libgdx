@@ -2,6 +2,8 @@ package zw.swd.main;
 
 import java.util.HashMap;
 
+import org.lwjgl.input.Mouse;
+
 import zw.swd.game.GameModel;
 import zw.swd.screen.FightScreen;
 import zw.swd.screen.SWDScreen;
@@ -36,7 +38,8 @@ public class App extends Game{
 		Gdx.input.setInputProcessor(screen);
 		this.setScreen(screen);
 		this.currentScreen=screen;
-		
+		Gdx.input.setCursorCatched(true);
+		Mouse.setClipMouseCoordinatesToWindow(true);
 //		MapMatcher matcher=new MapMatcher(batch);
 //		setScreen(matcher);
 //		Gdx.input.setInputProcessor(matcher);

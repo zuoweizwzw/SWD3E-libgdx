@@ -29,6 +29,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 public abstract class SWDScreen extends Actor implements Screen,InputProcessor{
 	public SpriteMgr spriteMgr;
 	public GuiMgr guiMgr;
+	public Cursor cursor=new Cursor();
 	
 	public SequenceAction rootAction=new SequenceAction();
 	@Override
@@ -48,7 +49,7 @@ public abstract class SWDScreen extends Actor implements Screen,InputProcessor{
 		guiMgr.draw();
 		guiMgr.act(delta);
 		
-		
+		cursor.draw();
 		
 	}
 	

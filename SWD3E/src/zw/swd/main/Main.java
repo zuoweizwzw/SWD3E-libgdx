@@ -10,6 +10,7 @@ public class Main {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.width=640;
 		config.foregroundFPS=100;
+		
 		config.height=480;
 		new LwjglApplication(new App(), config);
 		

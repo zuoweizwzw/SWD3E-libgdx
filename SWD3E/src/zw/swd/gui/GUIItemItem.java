@@ -14,7 +14,7 @@ public class GUIItemItem extends ListItem{
 
 	public Label name;
 	public Label num;
-	GameItem gameItem;
+	public GameItem gameItem;
 	public boolean selected=false;
 	public ClickEvent clickEvent;
 	@Override

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import zw.swd.math.Vector2;
+import zw.swd.utils.TextureLoader;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -42,7 +43,7 @@ public class Animation {
 		Frame frame=new Frame();
 		frame.duration=0.1f;
 		FrameKey key=new FrameKey();
-		key.texture=new TextureRegion(new Texture(Gdx.files.absolute(filePath)));
+		key.texture=new TextureRegion(TextureLoader.loadTexture(filePath));
 		
 		frame.keys.add(key);
 		this.frames.add(frame);
@@ -76,7 +77,7 @@ public class Animation {
 		Frame frame=new Frame();
 		frame.duration=0.1f;
 		FrameKey key=new FrameKey();
-		key.texture=new TextureRegion(new Texture(Gdx.files.absolute(path)),width,height);
+		key.texture=new TextureRegion(TextureLoader.loadTexture(path),width,height);
 		
 		frame.keys.add(key);
 		this.frames.add(frame);
@@ -239,6 +240,10 @@ public class Animation {
 		return ((Frame) frames.get(currentFrame)).getWidth();
 	}
 
+	public int getHeight() {
+		return ((Frame) frames.get(currentFrame)).getHeight();
+	}
+	
 	public void setPhysicSize(int width,int height) {
 		// TODO Auto-generated method stub
 		if(this.frames.size()>0)

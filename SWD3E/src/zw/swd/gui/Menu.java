@@ -6,6 +6,7 @@ import zw.swd.graphics.Animation;
 import zw.swd.main.App;
 import zw.swd.main.Config;
 import zw.swd.math.Vector2;
+import zw.swd.screen.SceneScreen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -30,6 +31,7 @@ public class Menu extends Paper{
 		this.copySize(background);
 		this.addActor(background);
 		
+		
 		Picture itemfocus=new Picture(Config.resPath+"/gui/4-1.png");
 		Picture itemnormal=new Picture();
 		itemnormal.setSize(itemfocus.getWidth(), itemfocus.getHeight());
@@ -41,34 +43,24 @@ public class Menu extends Paper{
 				super.setFocus(focus);
 				if(focus)
 				{
+					
 					Menu menu=(Menu) this.getParent();
 					for(Actor actor:menu.getChildren())
 					{
 						if(actor!=this&&actor instanceof TabButton) ((TabButton)actor).setFocus(false);
 					}
+					
 					GUI gui=(GUI) this.getParent().getParent();
 					gui.background.setAnimation(new Animation(Config.resPath+"/gui/13-1.png"));
-					App app=(App)Gdx.app.getApplicationListener();
-				
-					gui.itemrolelistpanel=new ItemRoleListPanel(app.gameModel);
-					gui.itemrolelistpanel.setPosition(-204, 10);
-					gui.itemrolelistpanel.startSequenceAction(new ActorMoveAction(gui.itemrolelistpanel,new Vector2(204,0),600f));
-					gui.addActor(gui.itemrolelistpanel);
-					
-					//showitemwindow
-					GUIItemWindow window=new GUIItemWindow(app.gameModel);
-					gui.addActor(window);
+					gui.itempane.show();
 				}
 				else
 				{
 					if(this.getParent()!=null)
 					{
-					GUI gui=(GUI) this.getParent().getParent();
-					gui.itemrolelistpanel.startSequenceAction(new ActorMoveAction(gui.itemrolelistpanel,new Vector2(-204,0),600f));
-					gui.itemrolelistpanel.addSequenceAction(new RemoveActorAction(gui.itemrolelistpanel));
-					
-					}
-					
+						GUI gui=(GUI) this.getParent().getParent();
+						gui.itempane.hide();
+					}					
 				}
 			}
 		};
@@ -79,10 +71,14 @@ public class Menu extends Paper{
 			@Override
 			public void onClick(int button) {
 				// TODO Auto-generated method stub
-					if(!item.isFocused)item.setFocus(true);
+				GUI gui=(GUI) equipe.getParent().getParent();
+				if(gui.itempane.isActing) return;
+				if(!item.isFocused)item.setFocus(true);
 			}
 		};		
 		this.addActor(item);
+		
+		
 		
 		Picture equipefocus=new Picture(Config.resPath+"/gui/4-2.png");
 		Picture equipenormal=new Picture();
@@ -100,21 +96,14 @@ public class Menu extends Paper{
 					{
 						if(actor!=this&&actor instanceof TabButton) ((TabButton)actor).setFocus(false);
 					}
-//				GUI gui=(GUI) this.getParent().getParent();
-//				gui.background.setAnimation(new Animation(Config.resPath+"/gui/13-1.png"));
-//				App app=(App)Gdx.app.getApplicationListener();
-//				
-//				gui.itemrolelistpanel=new ItemRoleListPanel(app.gameModel);
-//				gui.itemrolelistpanel.setPosition(0, 8);
-//				gui.addActor(gui.itemrolelistpanel);
 				}
 				else
 				{
-					if(this.getParent()!=null)
-					{
-					GUI gui=(GUI) this.getParent().getParent();
-					gui.removeActor(gui.itemrolelistpanel);
-					}
+//					if(this.getParent()!=null)
+//					{
+//					GUI gui=(GUI) this.getParent().getParent();
+//					gui.removeActor(gui.itemrolelistpanel);
+//					}
 				}
 			}
 		};
@@ -125,7 +114,9 @@ public class Menu extends Paper{
 			@Override
 			public void onClick(int button) {
 				// TODO Auto-generated method stub
-					if(!equipe.isFocused)equipe.setFocus(true);
+				GUI gui=(GUI) equipe.getParent().getParent();
+				if(gui.itempane.isActing) return;
+				if(!equipe.isFocused)equipe.setFocus(true);
 			}
 		};		
 		this.addActor(equipe);

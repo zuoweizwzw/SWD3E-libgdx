@@ -13,22 +13,18 @@ public class GUIItemWindow extends Paper{
 	GUIItemList list;
 	Picture tabs=new Picture();
 	GameModel gameModel;
-	public GUIItemWindow(GameModel gameModel) {
-		// TODO Auto-generated constructor stub
-		this.setPosition(208, 40);
-		this.gameModel=gameModel;
+	
+	public GUIItemWindow()
+	{
 		this.setName("guiitemwindow");
 		this.setSize(304, 353);
-		list=new GUIItemList(gameModel);
+		list=new GUIItemList();
 		this.setColor(new Color(0,0,0,0.7f));
-		
 		Picture leftdown=new Picture(Config.resPath+"/gui/39-7.png");
 		this.addActor(leftdown);
-		
 		Picture rightdown=new Picture(Config.resPath+"/gui/39-9.png");
 		rightdown.setPosition(leftdown.getX()+3*96, leftdown.getY());
 		this.addActor(rightdown);
-		
 		Picture leftup=new Picture(Config.resPath+"/gui/39-1.png");
 		leftup.setPosition(leftdown.getX(), leftdown.getY()+7*48);
 		this.addActor(leftup);
@@ -36,7 +32,6 @@ public class GUIItemWindow extends Paper{
 		Picture rightup=new Picture(Config.resPath+"/gui/39-3.png");
 		rightup.setPosition(leftup.getX()+3*96, leftup.getY());
 		this.addActor(rightup);
-		
 		for(int i=0;i<3;i++)
 		{
 			Picture down=new Picture(Config.resPath+"/gui/39-8.png");
@@ -138,11 +133,8 @@ public class GUIItemWindow extends Paper{
 		this.addActor(tabs);
 		
 		this.addActor(list);
-		this.fillData(gameModel);
-		list.scroll.resetRect();
 	}
-
-	private void fillData(GameModel gameModel) {
+	public void fillData(GameModel gameModel) {
 		// TODO Auto-generated method stub
 		this.list.fillData(gameModel);
 	}

@@ -18,23 +18,21 @@ public class GUIItemList extends List{
 	GameModel gameModel;
 	GUIItemListScroll scroll;
 	int listcap=13;
-	public GUIItemList(GameModel gameModel) {
+
+	public GUIItemList() {
 		// TODO Auto-generated constructor stub
-		this.gameModel=gameModel;
 		scroll=new GUIItemListScroll();
 		scroll.setPosition(285, 0);
 		this.setName("guiitemlist");
 		this.addActor(scroll);
 	}
-
+	
 	@Override
 	public void drawCustomer(Batch batch, float parentAlpha) {
 		// TODO Auto-generated method stub
 		
 	}
 	
-	
-
 	@Override
 	public void fillData(Object object) {
 		// TODO Auto-generated method stub
@@ -48,15 +46,10 @@ public class GUIItemList extends List{
 		{
 			actor.remove();
 		}
-		
-		
-		
 		if(model.items.size()>13)
 		{
 			for(int i=0;i<model.items.size();i++)
 			{
-				String code=model.items.get(i).itemModel.code;
-				ItemModel itemModel=model.items.get(i).itemModel;
 				final GUIItemItem item=new GUIItemItem(model.items.get(i));
 				item.clickEvent=new ClickEvent()
 				{
@@ -73,8 +66,13 @@ public class GUIItemList extends List{
 								other.selected=false;
 							}
 						}
+						GUIItemView view=item.getParent().getParent().getParent().findActor("guiitemview");
+						view.setAnimation(item.gameItem.itemModel.animation);
+						view.setVisible(true);
+						
+						GUIItemDescription description=item.getParent().getParent().getParent().findActor("guiitemdescription");
+						description.setText(item.gameItem.itemModel.description);
 					}
-					
 				};
 				
 				item.setPosition(5, (12-i+(scroll.index))*26+6);
@@ -86,36 +84,11 @@ public class GUIItemList extends List{
 				else item.setVisible(true);
 			}
 			
-//			for(int i=scroll.index;i<scroll.index+13;i++)
-//			{
-//				String code=model.items.get(i).itemModel.code;
-//				ItemModel magicModel=model.items.get(i).itemModel;
-//				final GUIItemItem item=new GUIItemItem(model.items.get(i));
-//				item.clickEvent=new ClickEvent() {
-//					
-//					@Override
-//					public void onClick(int button) {
-//						// TODO Auto-generated method stub
-//						item.selected=true;
-//						GUIItemList list=(GUIItemList) item.getParent();
-//						for(GUIItemItem other:list.getItems())
-//						{
-//							if(other!=item)
-//							{
-//								other.selected=false;
-//							}
-//						}
-//					}
-//				};
-//				item.setPosition(5, (12-i+(scroll.index))*26+6);
-//				this.addActor(item);
-//			}
 		}
 		else
 		{
 			for(int i=0;i<model.items.size();i++)
 			{
-				String code=model.items.get(i).itemModel.code;
 				GameItem magicModel=model.items.get(i);
 				GUIItemItem item=new GUIItemItem(magicModel);
 				item.setPosition(5, (12-i+(scroll.index))*26+6);
