@@ -38,6 +38,12 @@ public class TestUtils {
 		model.water=0;
 		model.fire=0;
 		model.earth=0;
+		model.weapon="0064";
+		model.foot="0170";
+		model.hand="0281";
+		model.head="0284";
+		model.body="0057";
+		
 		model.fightAvatar=Config.resPath+"\\gui\\75-1.png";
 		model.skills=SkillsLoader.loadSkillsByRole(resID); 
 		model.magics.add("51");

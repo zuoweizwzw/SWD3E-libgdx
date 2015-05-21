@@ -11,7 +11,7 @@ public class EquipeRoleListPanel extends Paper{
 
 	Picture background;
 	Picture avatar;
-	int index=0;
+
 	ItemRolePanel panel;
 	GameModel model;
 	Label element;
@@ -163,8 +163,11 @@ public class EquipeRoleListPanel extends Paper{
 	public void fillData(GameModel model) {
 		// TODO Auto-generated method stub
 		this.model=model;
-		RoleModel role=model.members.get(index);
-		panel.updateData(model.members.get(index)); 
+		
+		GUIEquipePane equipe=(GUIEquipePane) this.getParent();
+		
+		RoleModel role=model.members.get(equipe.index);
+		panel.updateData(role); 
 		this.element.setText(role.element);
 		this.strength.setText(role.strength);
 		this.tolerance.setText(role.tolerance);
