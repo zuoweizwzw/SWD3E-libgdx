@@ -72,7 +72,7 @@ public class Menu extends Paper{
 			public void onClick(int button) {
 				// TODO Auto-generated method stub
 				GUI gui=(GUI) equipe.getParent().getParent();
-				if(gui.itempane.isActing) return;
+				if(gui.isActing()) return;
 				if(!item.isFocused)item.setFocus(true);
 			}
 		};		
@@ -96,14 +96,17 @@ public class Menu extends Paper{
 					{
 						if(actor!=this&&actor instanceof TabButton) ((TabButton)actor).setFocus(false);
 					}
+					GUI gui=(GUI) this.getParent().getParent();
+					gui.background.setAnimation(new Animation(Config.resPath+"/gui/52-1.png"));
+					gui.equipepane.show();
 				}
 				else
 				{
-//					if(this.getParent()!=null)
-//					{
-//					GUI gui=(GUI) this.getParent().getParent();
-//					gui.removeActor(gui.itemrolelistpanel);
-//					}
+					if(this.getParent()!=null)
+					{
+						GUI gui=(GUI) this.getParent().getParent();
+						gui.equipepane.hide();
+					}
 				}
 			}
 		};
@@ -115,7 +118,7 @@ public class Menu extends Paper{
 			public void onClick(int button) {
 				// TODO Auto-generated method stub
 				GUI gui=(GUI) equipe.getParent().getParent();
-				if(gui.itempane.isActing) return;
+				if(gui.isActing()) return;
 				if(!equipe.isFocused)equipe.setFocus(true);
 			}
 		};		

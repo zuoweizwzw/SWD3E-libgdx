@@ -22,10 +22,6 @@ public class SceneActor extends Sprite{
 		this.setName(roleNum);
 		
 	}
-	
-	
-	
-	
 	public void setCurrentAniByName(String aniName)
 	{
 		this.setAnimation(this.pool.get(roleNum+"/"+aniName));

@@ -26,6 +26,18 @@ public class TestUtils {
 		model.mp_max=400;
 		model.energe=10;
 		model.energe_max=200;
+		model.element="木";
+		model.strength=10;
+		model.tolerance=10;
+		model.intelligence=10;
+		model.agility=10;
+		model.nextlevel=100;
+		model.exp=0;
+		model.gold=0;
+		model.wood=15;
+		model.water=0;
+		model.fire=0;
+		model.earth=0;
 		model.fightAvatar=Config.resPath+"\\gui\\75-1.png";
 		model.skills=SkillsLoader.loadSkillsByRole(resID); 
 		model.magics.add("51");

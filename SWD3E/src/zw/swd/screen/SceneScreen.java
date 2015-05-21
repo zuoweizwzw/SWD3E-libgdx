@@ -52,7 +52,7 @@ public class SceneScreen extends SWDScreen {
 
 	public SceneMap sceneMap;
 	public SceneActor actor;
-	public int gameState = 0;//0普通状态，1执行脚本状态，2GUI状态，3GUI动画状态
+	public int gameState = 0;//-1鼠标移动主角，0普通状态，1执行脚本状态，2GUI状态，3GUI动画状态
 
 	SceneScript currentScript;
 	GUI gui;
@@ -103,6 +103,7 @@ public class SceneScreen extends SWDScreen {
 		}
 	}
 
+	
 	@Override
 	public boolean keyDown(int keycode) {
 		// TODO Auto-generated method stub
@@ -130,11 +131,20 @@ public class SceneScreen extends SWDScreen {
 			{
 				if(this.gameState==0)
 				{
-					if(this.gui.itempane.isActing) return false;
+					if(!gui.isActing())
+					{
+					this.stopActorMove();
+					Gdx.input.setInputProcessor(gui);
+					if(this.gui.itempane.isActing()) return false;
 					this.gameState=2;
 					this.gui.show();
+					}
 					
 				}
+			}
+			if(keycode==Keys.S)
+			{
+				this.stopActorMove();
 			}
 		}
 
@@ -158,7 +168,9 @@ public class SceneScreen extends SWDScreen {
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		// TODO Auto-generated method stub
-		
+		if (button == Buttons.RIGHT) {
+			stopActorMove();
+		}
 		return false;
 	}
 
@@ -177,13 +189,11 @@ public class SceneScreen extends SWDScreen {
 		}
 		
 		if (button == Buttons.RIGHT) {
-			stopActorMove();
 			if(gameState==2)
 			{
 //				this.guiMgr.removeActorByName("gui");
-				if(gui.itempane.isActing) return false;
-				gui.hide();
-				this.gameState=0;
+				if(gui.itempane.isActing()) return false;
+				gui.hide();//
 			}
 		}
 		
@@ -241,6 +251,7 @@ public class SceneScreen extends SWDScreen {
 			return;
 
 		if (gameState == 0) {
+			
 			if (this.actor.getActions().size == 0) {
 
 				if (deltaVec.len() <= 32)

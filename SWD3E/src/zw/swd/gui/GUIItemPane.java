@@ -2,6 +2,7 @@ package zw.swd.gui;
 
 import zw.swd.game.GameModel;
 import zw.swd.game.actions.ActorMoveAction;
+import zw.swd.game.actions.WaitAction;
 import zw.swd.main.App;
 import zw.swd.math.Vector2;
 import zw.swd.screen.SceneScreen;
@@ -58,9 +59,10 @@ public class GUIItemPane extends Paper{
 	
 	public void hide()
 	{
-		this.startParellAction(new ActorMoveAction(itemrolelistpanel,new Vector2(-204,0),1200f));
-		this.addAction(new ActorMoveAction(itemwindow,new Vector2((432),0),3000f));
-		this.addAction(new ActorMoveAction(description,new Vector2(0,-(1+40)),280f));
+		this.startParellAction(new ActorMoveAction(itemrolelistpanel,new Vector2(-204,0),600f));
+		this.addAction(new ActorMoveAction(itemwindow,new Vector2((432),0),1500f));
+		this.addAction(new ActorMoveAction(description,new Vector2(0,-(1+40)),140f));
+		this.addAction(new WaitAction(0.3f));
 		this.view.setVisible(false);
 	}
 	

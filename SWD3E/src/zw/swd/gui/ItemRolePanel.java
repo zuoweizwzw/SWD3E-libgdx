@@ -153,7 +153,8 @@ public class ItemRolePanel extends Paper{
 		background.setAnimation(new Animation(Config.resPath+"/gui/2-6.png"));
 		}
 		this.levelnum.setText(Integer.toString(model.level));
-		this.exp.setText(Integer.toString(model.exp));
+		this.exp.setText(Integer.toString(model.nextlevel-model.exp));
+		this.name.setText(model.name);
 		this.hp.setText(Integer.toString(model.hp));
 		this.hpmax.setText(Integer.toString(model.hp_max));
 		this.hpprogress.setPhysicWidth((int)(((float)model.hp/(float)model.hp_max)*82));

@@ -19,21 +19,6 @@ public class ItemRoleListPanel extends Paper{
 		
 	}
 	
-//	public ItemRoleListPanel(GameModel model) {
-//		// TODO Auto-generated constructor stub
-//		background=new Picture(Config.resPath+"/gui/1-1.png");
-//		this.model=model;
-//		this.addActor(background);
-//		
-//		for(int i=0;i<model.members.size();i++)
-//		{
-//			RoleModel role=model.members.get(i);
-//			ItemRolePanel itemrolepanel=new ItemRolePanel(role);
-//			itemrolepanel.setPosition(14, 284+i*131);
-//			this.addActor(itemrolepanel);
-//		}
-//	}
-	
 	public ItemRoleListPanel()
 	{
 		this.setName("itemrolelistpanel");

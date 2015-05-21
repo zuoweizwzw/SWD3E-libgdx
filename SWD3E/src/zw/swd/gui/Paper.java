@@ -20,7 +20,7 @@ public abstract class Paper extends Group implements AnimatedActor{
 	protected Animation currentAnimation;
 	public Vector2 scaleSize;
 	
-	public boolean isActing=false;;
+	private boolean isActing=false;;
 	
 	ShapeRenderer renderer=new ShapeRenderer();
 	public float alpha=1;
@@ -40,16 +40,7 @@ public abstract class Paper extends Group implements AnimatedActor{
 		
 	}
 	
-	@Override
-	public void act(float delta) {
-		// TODO Auto-generated method stub
-		super.act(delta);
-		if(this.rootSequence.size()!=0||this.getActions().size!=0)
-		{
-			this.isActing=true;
-		}
-		else this.isActing=false;
-	}
+	
 
 	public abstract void drawCustomer(Batch batch, float parentAlpha);
 	
@@ -201,6 +192,13 @@ public abstract class Paper extends Group implements AnimatedActor{
 		return papers;
 	}
 	
-	
+	public boolean isActing()
+	{
+		if(this.rootSequence.size()!=0||this.getActions().size!=0)
+		{
+			return true;
+		}
+		else return false;
+	}
 	
 }

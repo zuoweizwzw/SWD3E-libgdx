@@ -50,6 +50,13 @@ public class Label extends Paper{
 		
 	}
 	
+	public void setText(int  text)
+	{
+		String texts=Integer.toString(text);
+		setText(texts);
+		
+	}
+	
 	public String getText()
 	{
 		return this.text;
