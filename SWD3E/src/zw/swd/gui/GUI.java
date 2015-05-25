@@ -1,20 +1,26 @@
 package zw.swd.gui;
 
 import zw.swd.main.App;
+import zw.swd.screen.Cursor;
 import zw.swd.screen.SceneScreen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.backends.lwjgl.LwjglInput;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.input.GestureDetector.GestureListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class GUI extends Paper implements InputProcessor{
 
+	private static GUI instance;
 	Menu menu;
 	public Picture background=new Picture();
 	public GUIItemPane itempane=new GUIItemPane();
 	public GUIEquipePane equipepane=new GUIEquipePane();
 	public boolean hiding=false;
+	int status=0;//0普通,1//使用物品中
 	@Override
 	public void drawCustomer(Batch batch, float parentAlpha) {
 		// TODO Auto-generated method stub
@@ -32,7 +38,17 @@ public class GUI extends Paper implements InputProcessor{
 		}
 	}
 
-	public GUI() {
+	public static GUI getInstance()
+	{
+		if(instance==null)
+		{
+			instance=new GUI();
+		}
+		
+		return instance;
+	}
+	
+	private GUI() {
 		// TODO Auto-generated constructor stub
 		this.addActor(background);
 		
@@ -80,19 +96,39 @@ public class GUI extends Paper implements InputProcessor{
 		return false;
 	}
 
+	
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		// TODO Auto-generated method stub
+		
 		if(button==Buttons.LEFT)
-		{			
+		{		
+			LwjglInput input=(LwjglInput) Gdx.input;
+			
 			for(Paper paper:this.getAllPapers())
 			{
 				if(paper.isVisible()) paper.onClickEvent(button);
 			}
+			
+			if(input.isDoubleClick())
+			{
+				for(Paper paper:this.getAllPapers())
+				{
+					if(paper.isVisible()) paper.onDoubleClickEvent(button);
+				}
+			}
 		}
 		if (button == Buttons.RIGHT) {
+			if(this.status==0)
+			{
 			if(this.itempane.isActing()) return false;
 			this.hide();
+			}
+			else if(this.status==1)
+			{
+				this.status=0;
+				Cursor.setCursor(0);
+			}
 		}
 		return false;
 	}

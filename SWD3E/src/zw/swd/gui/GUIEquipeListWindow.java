@@ -1,11 +1,20 @@
 package zw.swd.gui;
 
-import zw.swd.game.GameModel;
-import zw.swd.gui.special.WindowStyle1;
+import java.util.ArrayList;
 
+import zw.swd.game.GameItem;
+import zw.swd.game.GameModel;
+import zw.swd.gui.list.SWDList;
+import zw.swd.gui.list.SWDListWindow;
+import zw.swd.gui.list.SWDTestListItem;
+import zw.swd.gui.special.WindowStyle1;
+import zw.swd.main.App;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 
-public class GUIEquipeListWindow extends Paper{
+public class GUIEquipeListWindow extends SWDListWindow{
 
 	Picture background;
 	GameModel gameModel;
@@ -18,12 +27,12 @@ public class GUIEquipeListWindow extends Paper{
 	
 	public GUIEquipeListWindow() {
 		// TODO Auto-generated constructor stub
+		super(165,225,9);
 		this.setName("guiequipelistwindow");
-		
-		background=WindowStyle1.createInstance(165, 225);
-		this.addActor(background);
-		
-		
+		this.setItemType(SWDTestListItem.class);
+		App app=(App) Gdx.app.getApplicationListener();
+		ArrayList<GameItem> objects=app.gameModel.items;
+		this.fillData(objects);
 	}
 	
 	public void fillData(int type,GameModel model)

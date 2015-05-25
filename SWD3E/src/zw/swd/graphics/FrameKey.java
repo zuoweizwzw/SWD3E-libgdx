@@ -1,5 +1,7 @@
 package zw.swd.graphics;
 
+import zw.swd.utils.TextureLoader;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -21,6 +23,15 @@ public class FrameKey {
 	public void setRegion(int x, int y, int width, int height) {
 		// TODO Auto-generated method stub
 		this.texture.setRegion(x, y, width, height);
+	}
+	
+	public FrameKey(String path) {
+		// TODO Auto-generated constructor stub
+		this.texture=new TextureRegion(TextureLoader.loadTexture(path));
+
+	}
+	public FrameKey() {
+		// TODO Auto-generated constructor stub
 	}
 	
 }

@@ -3,6 +3,7 @@ package zw.swd.gui;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -37,12 +38,19 @@ public abstract class Paper extends Group implements AnimatedActor{
 		
 		super.draw(batch, parentAlpha);
 		
+		drawOverAll(batch, parentAlpha);
+		
 		
 	}
 	
 	
 
 	public abstract void drawCustomer(Batch batch, float parentAlpha);
+	
+	public void drawOverAll(Batch batch, float parentAlpha)
+	{
+		
+	}
 	
 	public Vector2 getStagePosition()
 	{
@@ -151,12 +159,34 @@ public abstract class Paper extends Group implements AnimatedActor{
 		batch.begin();
 		
 	}
+	
+	public void drawRect(Batch batch,float parentAlpha,Color color)
+	{
+		batch.end();
+		Gdx.gl.glEnable(GL20.GL_BLEND);
+		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+		renderer.begin(ShapeType.Filled);
+		renderer.setColor(color);
+		Vector2 v=this.getStagePosition();
+		renderer.rect(v.x,v.y, this.getWidth(), this.getHeight());
+		renderer.end();
+		batch.begin();
+	}
+	
 	//no mouseIn assert	
 	public void  onClickEvent(int button)
 	{
 		for(Paper paper:this.getAllPapers())
 		{
 			if(paper.isVisible()) paper.onClickEvent(button);
+		}
+	}
+	
+	public void  onDoubleClickEvent(int button)
+	{
+		for(Paper paper:this.getAllPapers())
+		{
+			if(paper.isVisible()) paper.onDoubleClickEvent(button);
 		}
 	}
 	
@@ -199,6 +229,24 @@ public abstract class Paper extends Group implements AnimatedActor{
 			return true;
 		}
 		else return false;
+	}
+	
+	public ArrayList<Paper> getSameTypePapersFromParent()
+	{
+		Class c=this.getClass();
+		ArrayList<Paper> objects=new ArrayList<>();
+		if(this.getParent()==null||!(this.getParent() instanceof Paper)) return objects;
+		Paper parent=(Paper) this.getParent();
+		ArrayList<Paper> children=parent.getAllPapers();
+		for(Paper paper:children)
+		{
+			
+			if(c.isInstance(paper)&&paper!=this)
+			{
+				objects.add(paper);
+			}
+		}
+		return objects;
 	}
 	
 }

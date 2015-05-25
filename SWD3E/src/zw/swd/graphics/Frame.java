@@ -19,6 +19,18 @@ public class Frame {
 			key.draw(x,y,batch,color,parentAlpha);
 		}
 	}
+	
+	public Frame(String path,float duration) {
+		// TODO Auto-generated constructor stub
+		FrameKey frameKey=new FrameKey(path);
+		keys.add(frameKey);
+		this.duration=duration;
+	}
+	
+	public Frame() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getWidth()
 	 {
 		 return getMain().texture.getRegionWidth();

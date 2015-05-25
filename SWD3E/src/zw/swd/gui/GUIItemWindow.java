@@ -1,6 +1,12 @@
 package zw.swd.gui;
 
+import java.util.ArrayList;
+
 import zw.swd.game.GameModel;
+import zw.swd.gui.list.SWDList;
+import zw.swd.gui.list.SWDListItem;
+import zw.swd.gui.list.SWDListWindow;
+import zw.swd.gui.special.WindowStyle1;
 import zw.swd.main.Config;
 
 import com.badlogic.gdx.Input.Buttons;
@@ -8,59 +14,19 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public class GUIItemWindow extends Paper{
+public class GUIItemWindow extends SWDListWindow{
 
-	GUIItemList list;
 	Picture tabs=new Picture();
 	GameModel gameModel;
 	
 	public GUIItemWindow()
 	{
+		super(304,352,13);
 		this.setName("guiitemwindow");
-		this.setSize(304, 353);
-		list=new GUIItemList();
-		this.setColor(new Color(0,0,0,0.7f));
-		Picture leftdown=new Picture(Config.resPath+"/gui/39-7.png");
-		this.addActor(leftdown);
-		Picture rightdown=new Picture(Config.resPath+"/gui/39-9.png");
-		rightdown.setPosition(leftdown.getX()+3*96, leftdown.getY());
-		this.addActor(rightdown);
-		Picture leftup=new Picture(Config.resPath+"/gui/39-1.png");
-		leftup.setPosition(leftdown.getX(), leftdown.getY()+7*48);
-		this.addActor(leftup);
+		this.setItemType(GUIItemItem.class);
+		this.setListYOffset(-3);
 		
-		Picture rightup=new Picture(Config.resPath+"/gui/39-3.png");
-		rightup.setPosition(leftup.getX()+3*96, leftup.getY());
-		this.addActor(rightup);
-		for(int i=0;i<3;i++)
-		{
-			Picture down=new Picture(Config.resPath+"/gui/39-8.png");
-			down.setPosition(leftdown.getX()+8+i*96, leftdown.getY());
-			this.addActor(down);
-		}
-		
-		for(int i=0;i<7;i++)
-		{
-			Picture left=new Picture(Config.resPath+"/gui/39-4.png");
-			left.setPosition(leftdown.getX(), leftdown.getY()+8+i*48);
-			this.addActor(left);
-		}
-		
-		for(int i=0;i<3;i++)
-		{
-			Picture up=new Picture(Config.resPath+"/gui/39-2.png");
-			up.setPosition(leftup.getX()+8+i*96, leftup.getY());
-			this.addActor(up);
-		}
-		
-		for(int i=0;i<7;i++)
-		{
-			Picture right=new Picture(Config.resPath+"/gui/39-6.png");
-			right.setPosition(rightdown.getX(), rightdown.getY()+8+i*48);
-			this.addActor(right);
-		}
-		
-		tabs.setPosition(leftup.getX(), leftup.getY()+16);
+		tabs.setPosition(this.getX(), this.getY()+352);
 		final TabButton tab1=new TabButton(new Picture(Config.resPath+"/gui/17-47.png"), new Picture(Config.resPath+"/gui/17-3.png"));
 		tab1.setPosition(0, 0);
 		tab1.clickEvent=new ClickEvent() {
@@ -132,11 +98,10 @@ public class GUIItemWindow extends Paper{
 		
 		this.addActor(tabs);
 		
-		this.addActor(list);
 	}
 	public void fillData(GameModel gameModel) {
 		// TODO Auto-generated method stub
-		this.list.fillData(gameModel);
+		this.list.fillData(gameModel.items);
 	}
 
 	@Override
@@ -145,4 +110,17 @@ public class GUIItemWindow extends Paper{
 		
 	}
 
+	public GUIItemItem getSelectedItem()
+	{
+		GUIItemItem item=null;
+		ArrayList<SWDListItem> items=this.list.getListItems();
+		for(SWDListItem listItem:items)
+		{
+			item=(GUIItemItem) listItem;
+			if(item.selected) return item;
+		}
+		
+		return item;
+	}
+	
 }

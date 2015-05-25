@@ -8,9 +8,11 @@ import zw.swd.graphics.SpriteMgr;
 import zw.swd.graphics.scene.SceneMap;
 import zw.swd.gui.GuiMgr;
 import zw.swd.gui.Paper;
+import zw.swd.input.SWDInputProcessor;
 import zw.swd.utils.FontLoader;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -29,7 +31,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 public abstract class SWDScreen extends Actor implements Screen,InputProcessor{
 	public SpriteMgr spriteMgr;
 	public GuiMgr guiMgr;
-	public Cursor cursor=new Cursor();
+	
 	
 	public SequenceAction rootAction=new SequenceAction();
 	@Override
@@ -44,12 +46,11 @@ public abstract class SWDScreen extends Actor implements Screen,InputProcessor{
 		
 		spriteMgr.draw();
 		spriteMgr.act(delta);
-		
-		
+
 		guiMgr.draw();
 		guiMgr.act(delta);
 		
-		cursor.draw();
+		Cursor.current.draw();
 		
 	}
 	
@@ -113,6 +114,7 @@ public abstract class SWDScreen extends Actor implements Screen,InputProcessor{
 		this.spriteMgr=new SpriteMgr(this);
 		this.guiMgr=new GuiMgr(this);
 		this.rootAction.setActor(this);
+		Cursor.init();
 		
 	}
 
@@ -127,4 +129,6 @@ public abstract class SWDScreen extends Actor implements Screen,InputProcessor{
 	}
 	
 	public abstract void init();
+	
+	
 }

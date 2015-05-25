@@ -33,6 +33,7 @@ public class Button extends Paper{
 		// TODO Auto-generated constructor stub
 		this.pressedAni=pressedAni;
 		this.releasedAni=releasedAni;
+		this.setAnimation(releasedAni);
 	}
 	
 	@Override
@@ -45,6 +46,11 @@ public class Button extends Paper{
 				clickEvent.onClick(Buttons.LEFT);
 			}
 		}
+	}
+	
+	public float getHeight()
+	{
+		return this.getAnimation().getHeight();
 	}
 
 }

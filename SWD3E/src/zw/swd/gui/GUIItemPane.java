@@ -28,6 +28,7 @@ public class GUIItemPane extends Paper{
 		itemrolelistpanel=new ItemRoleListPanel();
 		itemrolelistpanel.setPosition(-204, 10);
 		itemwindow=new GUIItemWindow();
+		
 //		itemwindow.setPosition(432+304, 40);//208正常位置x，304宽度
 		itemwindow.setPosition(640, 40);
 		view=new GUIItemView();

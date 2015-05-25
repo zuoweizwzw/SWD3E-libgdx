@@ -45,6 +45,8 @@ public class WindowStyle1 {
 		left.setPosition(leftdown.getX(), leftdown.getY()+8);
 		picture.addActor(left);
 		
+		
+		
 		return picture;
 	}
 }

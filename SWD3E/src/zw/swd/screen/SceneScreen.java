@@ -66,7 +66,7 @@ public class SceneScreen extends SWDScreen {
 		actor.setCoord(320, 240);
 
 		this.sceneMap.sprites.addActor(actor);
-		gui=new GUI();
+		gui=GUI.getInstance();
 		this.guiMgr.addActor(gui);
 		gui.setVisible(false);
 		
