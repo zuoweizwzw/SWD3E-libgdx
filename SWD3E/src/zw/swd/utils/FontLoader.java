@@ -60,6 +60,7 @@ public class FontLoader {
 		p14.characters=sb.toString();
 		
 		font18=generator.generateFont(p18);
+		
 //		font18.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		font24=generator.generateFont(p24);
 //		font18.setColor(Color.RED);

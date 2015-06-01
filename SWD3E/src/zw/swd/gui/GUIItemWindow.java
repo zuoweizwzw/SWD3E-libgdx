@@ -2,6 +2,7 @@ package zw.swd.gui;
 
 import java.util.ArrayList;
 
+import zw.swd.game.GameItem;
 import zw.swd.game.GameModel;
 import zw.swd.gui.list.SWDList;
 import zw.swd.gui.list.SWDListItem;
@@ -102,6 +103,7 @@ public class GUIItemWindow extends SWDListWindow{
 	public void fillData(GameModel gameModel) {
 		// TODO Auto-generated method stub
 		this.list.fillData(gameModel.items);
+		this.gameModel=gameModel;
 	}
 
 	@Override
@@ -117,10 +119,24 @@ public class GUIItemWindow extends SWDListWindow{
 		for(SWDListItem listItem:items)
 		{
 			item=(GUIItemItem) listItem;
-			if(item.selected) return item;
+			if(item.isSelected()) return item;
 		}
 		
-		return item;
+		return null;
 	}
+	
+	public void removeGameItem(GameItem item)
+	{
+		this.gameModel.items.remove(item);
+//		this.list.updateData(this.gameModel.items);
+	}
+	
+	public void reset()
+	{
+		this.list.reset();
+	}
+	
+	
+	
 	
 }

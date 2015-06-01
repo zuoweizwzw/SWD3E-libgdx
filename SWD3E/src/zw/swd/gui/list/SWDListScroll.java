@@ -97,5 +97,7 @@ public class SWDListScroll extends Paper{
 		float rate=((float)capacity)/(float)maxCap;
 		this.rect.setPhysicHeight((int)(rate*this.background.getPicHeight()));
 	}
+	
+	
 
 }

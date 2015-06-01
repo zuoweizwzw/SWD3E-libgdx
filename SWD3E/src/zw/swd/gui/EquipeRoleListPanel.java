@@ -13,7 +13,7 @@ public class EquipeRoleListPanel extends Paper{
 	Picture avatar;
 
 	ItemRolePanel panel;
-	GameModel model;
+	RoleModel model;
 	Label element;
 	Label strength;
 	Label tolerance;
@@ -26,6 +26,7 @@ public class EquipeRoleListPanel extends Paper{
 	Label water;
 	Label fire;
 	Label earth;
+	
 	
 	@Override
 	public void drawCustomer(Batch batch, float parentAlpha) {
@@ -160,13 +161,12 @@ public class EquipeRoleListPanel extends Paper{
 		
 	}
 
-	public void fillData(GameModel model) {
+	public void fillData(RoleModel role) {
 		// TODO Auto-generated method stub
-		this.model=model;
+		this.model=role;
 		
 		GUIEquipePane equipe=(GUIEquipePane) this.getParent();
 		
-		RoleModel role=model.members.get(equipe.index);
 		panel.updateData(role); 
 		this.element.setText(role.element);
 		this.strength.setText(role.strength);

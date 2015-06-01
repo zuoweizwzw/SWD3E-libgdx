@@ -30,7 +30,7 @@ public class SWDList extends Paper{
 		this.capacity=capacity;
 		this.clazz=SWDListItem.class;
 		scroll=new SWDListScroll(height,capacity);
-		scroll.setPosition(width, 0);
+		scroll.setPosition(width-16, 0);
 		this.addActor(scroll);
 	}
 	
@@ -56,7 +56,7 @@ public class SWDList extends Paper{
 			SWDListItem item=null;
 			try {
 				Constructor<SWDListItem> c=(Constructor<SWDListItem>) clazz.getConstructor(int.class,int.class);
-				item=c.newInstance((int)this.getWidth(),heightperitem);				
+				item=c.newInstance((int)this.getWidth()-16,heightperitem);				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -86,9 +86,10 @@ public class SWDList extends Paper{
 		{
 			SWDListItem item=items.get(j);
 			if(j>=scroll.index&&j<scroll.index+capacity)
-			{			
+			{
 				item.setY((this.getHeight()-heightperitem)-i*heightperitem-i+this.listYOffset);
 				item.setVisible(true);
+				item.fillData(item.data);
 				i++;
 			}
 			else item.setVisible(false);
@@ -108,9 +109,106 @@ public class SWDList extends Paper{
 		return items;
 	}
 	
+	
+	public void removeItem(SWDListItem item)
+	{
+		this.removeActor(item);
+	}
+	
 	public void setListYOffset(int y)
 	{
 		this.listYOffset=y;
 	}
 
+	public void reset() {
+		// TODO Auto-generated method stub
+		this.updateData();
+		this.scroll.index=0;
+		for(SWDListItem item:this.getListItems())
+		{
+			item.setSelected(false);
+		}
+		
+	}
+	
+	public void updateData(ArrayList data)
+	{
+		this.data=data;
+		scroll.setMaxCap(data.size());
+		if(data.size()<=capacity) this.scroll.setVisible(false);
+		else this.scroll.setVisible(true);
+		ArrayList<SWDListItem> oldItems=this.getListItems();
+		int heightperitem=((int)this.getHeight()-capacity)/capacity;
+		for(SWDListItem item:this.getListItems())
+		{
+			item.remove();
+		}
+		for(int i=0;i<data.size();i++)
+		{
+			Object o=data.get(i);
+			SWDListItem item=ItemsContainData(oldItems, o);
+			if(item!=null)
+			{
+				
+			}
+			else
+			{
+				try {
+					Constructor<SWDListItem> c=(Constructor<SWDListItem>) clazz.getConstructor(int.class,int.class);
+					item=c.newInstance((int)this.getWidth()-16,heightperitem);				
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+			}
+			if(i<scroll.index||i>=scroll.index+capacity)
+			{
+				item.setVisible(false);
+			}
+			else item.setVisible(true);
+			item.fillData(o);
+			item.setY((this.getHeight()-heightperitem)-i*heightperitem-i+this.listYOffset);
+			this.addActor(item);
+		}
+		scrollData();
+		
+	}
+	
+	public void updateData()
+	{
+		updateData(this.data);
+	}
+	
+	public boolean dataContainItem(SWDListItem item)
+	{
+		for(Object o:this.data)
+		{
+			if(o==item.data) return true;
+		}
+		
+		return false;
+	}
+	
+	public boolean ItemsContainData(Object o)
+	{
+		for(SWDListItem item:this.getListItems())
+		{
+			if(item.data==o) return true;
+		}
+		
+		return false;
+	}
+	
+	public SWDListItem ItemsContainData(ArrayList<SWDListItem> items,Object o)
+	{
+		for(SWDListItem item:items)
+		{
+			if(item.data==o)
+			{
+				return item;
+			}
+		}
+		return null;
+	}
+	
 }

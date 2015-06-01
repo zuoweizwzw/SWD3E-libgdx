@@ -71,14 +71,15 @@ public class Menu extends Paper{
 			@Override
 			public void onClick(int button) {
 				// TODO Auto-generated method stub
+				if(GUI.getInstance().status==0)
+				{
 				GUI gui=(GUI) equipe.getParent().getParent();
 				if(gui.isActing()) return;
 				if(!item.isFocused)item.setFocus(true);
+				}
 			}
 		};		
 		this.addActor(item);
-		
-		
 		
 		Picture equipefocus=new Picture(Config.resPath+"/gui/4-2.png");
 		Picture equipenormal=new Picture();
@@ -117,9 +118,12 @@ public class Menu extends Paper{
 			@Override
 			public void onClick(int button) {
 				// TODO Auto-generated method stub
-				GUI gui=(GUI) equipe.getParent().getParent();
-				if(gui.isActing()) return;
-				if(!equipe.isFocused)equipe.setFocus(true);
+				if(GUI.getInstance().status==0)
+				{
+					GUI gui=(GUI) equipe.getParent().getParent();
+					if(gui.isActing()) return;
+					if(!equipe.isFocused)equipe.setFocus(true);
+				}
 			}
 		};		
 		this.addActor(equipe);

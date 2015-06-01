@@ -1,6 +1,7 @@
 package zw.swd.gui;
 
 import zw.swd.game.GameModel;
+import zw.swd.game.RoleModel;
 import zw.swd.main.App;
 import zw.swd.main.Config;
 import zw.swd.utils.FontLoader;
@@ -10,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 
 public class GUIEquipePane extends Paper{
 
+	private static GUIEquipePane instance;
 	public int index=0;
 	EquipeRoleListPanel equiperolelistpanel;
 	Picture attackpic;
@@ -21,6 +23,7 @@ public class GUIEquipePane extends Paper{
 	GUIEquipeStatusWindow guiequipestatuswindow;
 	GUIEquipeListWindow guiequipelistwindow;
 	GUIEquipeChangeWindow guiequipechangewindow;
+	public GameModel model;
 	
 	
 	@Override
@@ -28,8 +31,17 @@ public class GUIEquipePane extends Paper{
 		// TODO Auto-generated method stub
 		
 	}
-
-	public GUIEquipePane() {
+	
+	public static GUIEquipePane getInstance()
+	{
+		if(instance==null)
+		{
+			instance=new GUIEquipePane();
+		}
+		return instance;
+	}
+	
+	private GUIEquipePane() {
 		// TODO Auto-generated constructor stub
 		this.setName("guiequipepane");
 		//test
@@ -86,11 +98,13 @@ public class GUIEquipePane extends Paper{
 	{
 		//test
 		this.setVisible(true);
+		this.guiequipelistwindow.reset();
 	}
 	
 	public void fillData(GameModel model)
 	{
-		this.equiperolelistpanel.fillData(model);
+		this.model=model;
+		this.equiperolelistpanel.fillData(model.members.get(index)); 
 		this.guiequipestatuswindow.fillData(model.members.get(index));
 	}
 	
@@ -98,5 +112,10 @@ public class GUIEquipePane extends Paper{
 	{
 		//test
 		this.setVisible(false);
+	}
+	
+	public RoleModel getCurrentRoleModel()
+	{
+		return this.model.members.get(index);
 	}
 }

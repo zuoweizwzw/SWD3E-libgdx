@@ -3,6 +3,7 @@ package zw.swd.gui;
 import zw.swd.game.RoleModel;
 import zw.swd.graphics.Animation;
 import zw.swd.main.Config;
+import zw.swd.screen.Cursor;
 import zw.swd.utils.FontLoader;
 
 import com.badlogic.gdx.graphics.Color;
@@ -181,7 +182,17 @@ public class ItemRolePanel extends Paper{
 		{
 			if(GUI.getInstance().status==1)
 			{
-				
+				GUIItemWindow window=GUI.getInstance().findActor("guiitemwindow");
+				window.getSelectedItem().gameItem.itemModel.use(model);
+				window.getSelectedItem().gameItem.num--;
+				if(window.getSelectedItem().gameItem.num==0)
+				{
+					window.removeGameItem(window.getSelectedItem().gameItem);
+					GUI.getInstance().status=0;
+					Cursor.setCursor(0);
+				}
+				this.updateData(model);
+				window.updataData();
 			}
 		}
 	}

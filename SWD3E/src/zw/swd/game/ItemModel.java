@@ -44,4 +44,29 @@ public class ItemModel {
 	//0恢复,1剑，2环，3刀，4杵,5男头部，6女头部，7男身体，8女身体，9男手部，10女手部，11男足部，12女足部
 	//13饰品，14法宝，15护驾,16增益辅助，17攻击辅助,18剧情
 	public Animation animation;
+	
+	
+	public void use_hp(RoleModel model)
+	{
+		model.hp+=use_hp;
+		if(model.hp>model.hp_max)
+		{
+			model.hp=model.hp_max;
+		}
+	}
+	
+	public boolean isUseAll()
+	{
+		if(use_allhp>0||use_allmp>0||use_allenerge>0||use_allhppercent>0||use_allmppercent>0||use_allenergepercent>0)
+		{
+			return true;
+		}
+		else return false;
+	}
+	
+	public void use(RoleModel model)
+	{
+		use_hp(model);
+	}
+	
 }

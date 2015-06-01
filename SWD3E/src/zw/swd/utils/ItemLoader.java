@@ -40,7 +40,10 @@ public class ItemLoader {
 			if(line.indexOf("respath")>=0)
 			{
 				itemModel.resPath=line.split(":")[1];
-				
+			}
+			if(line.indexOf("use_hp")>=0)
+			{
+				itemModel.use_hp=Integer.parseInt(line.split(":")[1]);
 			}
 		}
 		}

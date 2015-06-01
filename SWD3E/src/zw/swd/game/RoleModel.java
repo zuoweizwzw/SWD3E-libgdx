@@ -36,6 +36,7 @@ public FightRole fightRole;
 	public int fire=0;
 	public int earth=0;
 	public String weapon="";
+	public int weaponType=1;
 	public String head="";
 	public String body="";
 	public String hand="";

@@ -106,9 +106,9 @@ public class GUIEquipeStatusItem extends Paper{
 		if(this.type==5&&!role.attach1.equals("")) this.item.setText(Cache.items.get(role.attach1).name);
 		if(this.type==6&&!role.attach2.equals("")) this.item.setText(Cache.items.get(role.attach2).name);
 		if(this.type==7&&!role.fabao1.equals("")) this.item.setText(Cache.items.get(role.fabao1).name);
-		if(this.type==3&&!role.fabao2.equals("")) this.item.setText(Cache.items.get(role.fabao2).name);
-		if(this.type==3&&!role.hujia1.equals("")) this.item.setText(Cache.items.get(role.hujia1).name);
-		if(this.type==3&&!role.hujia2.equals("")) this.item.setText(Cache.items.get(role.hujia2).name);
+		if(this.type==8&&!role.fabao2.equals("")) this.item.setText(Cache.items.get(role.fabao2).name);
+		if(this.type==9&&!role.hujia1.equals("")) this.item.setText(Cache.items.get(role.hujia1).name);
+		if(this.type==10&&!role.hujia2.equals("")) this.item.setText(Cache.items.get(role.hujia2).name);
 	}
 
 	@Override
@@ -126,6 +126,10 @@ public class GUIEquipeStatusItem extends Paper{
 					GUIEquipeStatusItem item=(GUIEquipeStatusItem) actor;
 					item.selected=false;
 				}
+			}
+			if(type==0)
+			{
+				GUIEquipePane.getInstance().guiequipelistwindow.updataData();
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 package zw.swd.gui;
 
+import zw.swd.gui.list.SWDListItem;
 import zw.swd.main.Config;
 import zw.swd.utils.FontLoader;
 
@@ -11,6 +12,11 @@ public class GUIItemDescription extends Paper{
 	@Override
 	public void drawCustomer(Batch batch, float parentAlpha) {
 		// TODO Auto-generated method stub
+		SWDListItem listItem=GUI.getInstance().itempane.itemwindow.getSelectedItem();
+		if(listItem==null)
+		{
+			this.setText("没有说明");
+		}
 		
 	}
 	public GUIItemDescription() {
@@ -69,5 +75,7 @@ public class GUIItemDescription extends Paper{
 	{
 		this.text.setText(text);
 	}
+	
+	
 
 }

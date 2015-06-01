@@ -15,6 +15,7 @@ public class GUIItemPane extends Paper{
 	public ItemRoleListPanel itemrolelistpanel;
 	public GUIItemWindow itemwindow;
 	public GUIItemView view;
+	private static GUIItemPane instance=null; 
 	public GUIItemDescription description;
 	GameModel gameModel;
 	@Override
@@ -23,7 +24,16 @@ public class GUIItemPane extends Paper{
 		
 	}
 
-	public GUIItemPane() {
+	public static GUIItemPane getInstance()
+	{
+		if(instance==null)
+		{
+			instance=new GUIItemPane();
+		}
+		return instance;
+	}
+	
+	private GUIItemPane() {
 		// TODO Auto-generated constructor stub
 		itemrolelistpanel=new ItemRoleListPanel();
 		itemrolelistpanel.setPosition(-204, 10);
@@ -53,6 +63,7 @@ public class GUIItemPane extends Paper{
 	
 	public void show()
 	{
+		itemwindow.reset();
 		this.startParellAction(new ActorMoveAction(itemrolelistpanel,new Vector2(204,0),600f));
 		this.addAction(new ActorMoveAction(itemwindow,new Vector2(-(432),0),1500f));
 		this.addAction(new ActorMoveAction(description,new Vector2(0,1+40),140f));

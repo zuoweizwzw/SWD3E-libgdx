@@ -23,6 +23,7 @@ public class SWDTestListItem extends SWDListItem{
 	@Override
 	public void fillData(Object o) {
 		// TODO Auto-generated method stub
+		super.fillData(o);
 		GameItem gameItem=(GameItem) o;
 		this.name.setText(gameItem.itemModel.name);
 		this.num.setText(gameItem.num);

@@ -44,4 +44,18 @@ public class SWDListWindow extends Paper{
 		this.list.setListYOffset(y);
 	}
 	
+	public void updataData()
+	{
+		this.list.updateData();
+	}
+	
+	public void updateData(ArrayList data)
+	{
+		this.list.updateData(data);
+	}
+	
+	public void reset()
+	{
+		this.list.reset();
+	}
 }

@@ -28,6 +28,7 @@ public class GUIEquipeListWindow extends SWDListWindow{
 	public GUIEquipeListWindow() {
 		// TODO Auto-generated constructor stub
 		super(165,225,9);
+		this.setListYOffset(-3);
 		this.setName("guiequipelistwindow");
 		this.setItemType(SWDTestListItem.class);
 		App app=(App) Gdx.app.getApplicationListener();

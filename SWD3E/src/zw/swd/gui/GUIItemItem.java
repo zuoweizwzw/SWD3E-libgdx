@@ -19,7 +19,6 @@ public class GUIItemItem extends SWDListItem{
 	public Label name;
 	public Label num;
 	public GameItem gameItem;
-	public boolean selected=false;
 	@Override
 	public void drawCustomer(Batch batch, float parentAlpha) {
 		// TODO Auto-generated method stub
@@ -27,7 +26,7 @@ public class GUIItemItem extends SWDListItem{
 //		{			
 //			this.drawBorder(batch, parentAlpha);			
 //		}
-		if(selected) 
+		if(isSelected()) 
 		{
 			Color old=new Color(this.getColor());
 			Color nouvel=new Color(0,0,0.8f,0.7f);
@@ -55,12 +54,14 @@ public class GUIItemItem extends SWDListItem{
 	@Override
 	public void fillData(Object o) {
 		// TODO Auto-generated method stub
+		super.fillData(o);
 		if(o instanceof GameItem)
 		{
 			GameItem item=(GameItem) o;
 			gameItem=item;
 			this.name.setText(item.itemModel.name);
 			this.num.setText(item.num);
+			
 		}
 	}
 	
@@ -71,14 +72,26 @@ public class GUIItemItem extends SWDListItem{
 		{
 			if(GUI.getInstance().status==0)
 			{
-			this.selected=true;
+				this.setSelected(true);
+			}
+		}
+	}
+	
+	@Override
+	public void setSelected(boolean selected) {
+		// TODO Auto-generated method stub
+		super.setSelected(selected);
+		if(selected)
+		{
 			ArrayList<Paper> peers=this.getSameTypePapersFromParent();
 			for(Paper paper:peers)
 			{
 				GUIItemItem item=(GUIItemItem) paper;
-				item.selected=false;
+				item.setSelected(false);
 			}
-			}
+			GUI.getInstance().itempane.view.setVisible(true);
+			GUI.getInstance().itempane.view.setAnimation(((GameItem)this.data).itemModel.animation);
+			GUI.getInstance().itempane.description.setText(((GameItem)this.data).itemModel.description);
 		}
 	}
 	
@@ -89,8 +102,20 @@ public class GUIItemItem extends SWDListItem{
 		{
 			if(GUI.getInstance().status==0)
 			{
-			Cursor.setCursor(1);
-			GUI.getInstance().status=1;
+				if(this.gameItem.itemModel.type==0)
+				{
+					if(this.gameItem.itemModel.isUseAll())
+					{
+						
+					}
+					else
+					{
+						Cursor.setCursor(1);
+						GUI.getInstance().status=1;
+					}
+					
+				}
+				
 			}
 		}
 	}

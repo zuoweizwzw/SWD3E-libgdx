@@ -17,8 +17,8 @@ public class GUI extends Paper implements InputProcessor{
 	private static GUI instance;
 	Menu menu;
 	public Picture background=new Picture();
-	public GUIItemPane itempane=new GUIItemPane();
-	public GUIEquipePane equipepane=new GUIEquipePane();
+	public GUIItemPane itempane=GUIItemPane.getInstance();
+	public GUIEquipePane equipepane=GUIEquipePane.getInstance();
 	public boolean hiding=false;
 	int status=0;//0普通,1//使用物品中
 	@Override

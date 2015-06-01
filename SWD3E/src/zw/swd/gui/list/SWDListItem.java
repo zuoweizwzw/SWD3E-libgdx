@@ -6,6 +6,8 @@ import zw.swd.gui.Paper;
 
 public class SWDListItem extends Paper{
 
+	public Object data;
+	private boolean selected=false;
 	@Override
 	public void drawCustomer(Batch batch, float parentAlpha) {
 		// TODO Auto-generated method stub
@@ -21,9 +23,19 @@ public class SWDListItem extends Paper{
 		this.setSize(width, height);
 	}
 
-	public void fillData(Object o) {
+	public void fillData(Object data) {
 		// TODO Auto-generated method stub
-		
+		this.data=data;
+	}
+
+	public void setSelected(boolean selected)
+	{
+		this.selected=selected;
+	}
+	
+	public boolean isSelected()
+	{
+		return this.selected;
 	}
 
 }

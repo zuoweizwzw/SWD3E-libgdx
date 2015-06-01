@@ -22,6 +22,7 @@ public class GUIEquipeStatusWindow extends Paper{
 	GUIEquipeStatusItem fabao2;
 	GUIEquipeStatusItem hujia1;
 	GUIEquipeStatusItem hujia2;
+	RoleModel roleModel;
 	@Override
 	public void drawCustomer(Batch batch, float parentAlpha) {
 		// TODO Auto-generated method stub
@@ -96,6 +97,7 @@ public class GUIEquipeStatusWindow extends Paper{
 	
 	public void fillData(RoleModel model)
 	{
+		this.roleModel=model;
 		ArrayList<Actor> actors=this.findActors(GUIEquipeStatusItem.class);
 		for(Actor actor:actors)
 		{
