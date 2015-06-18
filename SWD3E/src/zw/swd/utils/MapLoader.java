@@ -18,6 +18,9 @@ public class MapLoader {
 		
 		File controlsConfig=new File(Config.resPath+"\\huge\\"+mapNum+"\\"+mapNum+"_match.txt");
 		
+		File dataConfig=new File(Config.resPath+"\\huge\\"+mapNum+"\\"+mapNum+"_data.txt");
+		
+		map.data=loadData(dataConfig);
 		
 		try
 		{
@@ -48,5 +51,40 @@ public class MapLoader {
 		return map;
 	}
 	
-	
+	private static int[][] loadData(File path)
+	{
+		int[][] data=null;
+		
+		try
+		{
+			BufferedReader br=new BufferedReader(new FileReader(path));
+			String line1=br.readLine();
+			
+			int line=Integer.parseInt(line1.split(",")[0]);
+			int colum=Integer.parseInt(line1.split(",")[1]);
+			data=new int[line][colum];
+			
+			String[] lines=new String[line];
+			for(int i=0;i<line;i++)
+			{
+				lines[i]=br.readLine();
+			}
+			
+			for(int i=0;i<line;i++)
+			{
+				String[] lin=lines[lines.length-i-1].split(" ");
+				
+				for(int j=0;j<lin.length;j++)
+				{
+					data[i][j]=Integer.parseInt(lin[j]);
+				}
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return data;
+	}
 }

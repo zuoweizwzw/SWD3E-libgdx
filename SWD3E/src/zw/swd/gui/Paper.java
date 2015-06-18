@@ -64,10 +64,21 @@ public abstract class Paper extends Group implements AnimatedActor{
 	@Override
 	public void setAnimation(Animation animation)
 	{
+		if(animation!=null)
+		{
 		this.currentAnimation=animation;
 //		if(animation.frames.size()>0) this.setWidth(animation.frames.get(0).keys.get(0).texture.getRegionWidth());
 		this.copyAniSize(animation);
+		}
+		else
+		{
+			this.currentAnimation=null;
+			this.setSize(0, 0);
+		}
 	}
+	
+	
+	
 	private void copyAniSize(Animation animation) {
 		// TODO Auto-generated method stub
 		if(animation!=null)
@@ -182,12 +193,17 @@ public abstract class Paper extends Group implements AnimatedActor{
 		}
 	}
 	
-	public void  onDoubleClickEvent(int button)
+	public boolean  onDoubleClickEvent(int button)
 	{
 		for(Paper paper:this.getAllPapers())
 		{
-			if(paper.isVisible()) paper.onDoubleClickEvent(button);
+			if(paper.isVisible()) 
+				if(paper.onDoubleClickEvent(button))
+				{
+					return true;
+				};
 		}
+		return false;
 	}
 	
 	public void copySize(Paper paper)
@@ -247,6 +263,25 @@ public abstract class Paper extends Group implements AnimatedActor{
 			}
 		}
 		return objects;
+	}
+	
+	public void clearChildren(Class clazz) {
+		// TODO Auto-generated method stub
+		ArrayList<Actor> actors=this.findActors(clazz);
+		for(Actor actor:actors)
+		{
+			actor.remove();
+		}
+	}
+	
+	public void setAnimation(String path)
+	{
+		if(path.equals(""))
+		{
+			this.currentAnimation=null;
+			this.setSize(0, 0);
+		}
+		else this.setAnimation(new Animation(path));
 	}
 	
 }

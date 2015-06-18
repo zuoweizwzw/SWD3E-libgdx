@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+
 import zw.swd.gui.Paper;
 public class SWDList extends Paper{
 
@@ -31,6 +32,7 @@ public class SWDList extends Paper{
 		this.clazz=SWDListItem.class;
 		scroll=new SWDListScroll(height,capacity);
 		scroll.setPosition(width-16, 0);
+		scroll.setVisible(false);
 		this.addActor(scroll);
 	}
 	
@@ -176,7 +178,7 @@ public class SWDList extends Paper{
 	
 	public void updateData()
 	{
-		updateData(this.data);
+		if(this.data!=null&&this.data.size()!=0) updateData(this.data);
 	}
 	
 	public boolean dataContainItem(SWDListItem item)
@@ -210,5 +212,13 @@ public class SWDList extends Paper{
 		}
 		return null;
 	}
+
+	public void clearData() {
+		// TODO Auto-generated method stub
+		this.data=null;
+		this.clearChildren(SWDListItem.class);
+	}
+
+	
 	
 }

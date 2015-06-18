@@ -41,6 +41,8 @@ public class ItemModel {
 	public int use_energemax=0;
 	
 	
+	public int proficiency=0;
+	
 	//0恢复,1剑，2环，3刀，4杵,5男头部，6女头部，7男身体，8女身体，9男手部，10女手部，11男足部，12女足部
 	//13饰品，14法宝，15护驾,16增益辅助，17攻击辅助,18剧情
 	public Animation animation;

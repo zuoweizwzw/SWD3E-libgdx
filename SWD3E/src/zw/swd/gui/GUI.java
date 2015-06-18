@@ -27,7 +27,7 @@ public class GUI extends Paper implements InputProcessor{
 		
 		if(hiding)
 		{
-			if(!this.itempane.isActing())	
+			if(!this.isActing())	
 			{
 				this.setVisible(false);
 				this.hiding=false;
@@ -75,7 +75,7 @@ public class GUI extends Paper implements InputProcessor{
 		if(this.menu.equipe.isFocused) this.menu.equipe.setFocus(false);
 		this.hiding=true;
 		
-//		this.itempane.hide();
+
 	}
 
 	@Override
@@ -114,7 +114,11 @@ public class GUI extends Paper implements InputProcessor{
 			{
 				for(Paper paper:this.getAllPapers())
 				{
-					if(paper.isVisible()) paper.onDoubleClickEvent(button);
+					if(paper.isVisible()) 
+						if(paper.onDoubleClickEvent(button))
+						{
+							break;
+						};
 				}
 			}
 		}

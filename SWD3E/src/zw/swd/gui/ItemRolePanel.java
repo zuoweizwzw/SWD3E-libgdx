@@ -1,5 +1,6 @@
 package zw.swd.gui;
 
+import zw.swd.game.GameModel;
 import zw.swd.game.RoleModel;
 import zw.swd.graphics.Animation;
 import zw.swd.main.Config;
@@ -68,6 +69,7 @@ public class ItemRolePanel extends Paper{
 	public static ItemRolePanel createInstance()
 	{
 		ItemRolePanel panel=new ItemRolePanel();
+		panel.setName("itemrolepanel");
 		panel.background=new Picture();
 		panel.setSize(176, 131);
 		panel.addActor(panel.background);
@@ -187,12 +189,12 @@ public class ItemRolePanel extends Paper{
 				window.getSelectedItem().gameItem.num--;
 				if(window.getSelectedItem().gameItem.num==0)
 				{
-					window.removeGameItem(window.getSelectedItem().gameItem);
+					GameModel.getInstance().removeItem(window.getSelectedItem().gameItem);
 					GUI.getInstance().status=0;
 					Cursor.setCursor(0);
 				}
 				this.updateData(model);
-				window.updataData();
+				window.updateData();
 			}
 		}
 	}

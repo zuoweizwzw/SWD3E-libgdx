@@ -102,7 +102,7 @@ public class GUIItemWindow extends SWDListWindow{
 	}
 	public void fillData(GameModel gameModel) {
 		// TODO Auto-generated method stub
-		this.list.fillData(gameModel.items);
+		this.list.fillData(gameModel.getItemsByType(-1));
 		this.gameModel=gameModel;
 	}
 
@@ -125,11 +125,7 @@ public class GUIItemWindow extends SWDListWindow{
 		return null;
 	}
 	
-	public void removeGameItem(GameItem item)
-	{
-		this.gameModel.items.remove(item);
-//		this.list.updateData(this.gameModel.items);
-	}
+
 	
 	public void reset()
 	{

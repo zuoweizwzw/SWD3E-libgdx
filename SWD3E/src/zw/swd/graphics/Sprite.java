@@ -99,6 +99,11 @@ public class Sprite extends Actor implements AnimatedActor{
 		return this.coord.y;
 	}
 	
+	public Vector2 getCoordCopy()
+	{
+		return new Vector2(coord.x,coord.y);
+	}
+	
 	@Override
 	public void moveBy(float x, float y) {
 		// TODO Auto-generated method stub
@@ -153,6 +158,15 @@ public class Sprite extends Actor implements AnimatedActor{
 		}
 		return false;
 		
+	}
+
+	@Override
+	public void setAnimation(String path) {
+		// TODO Auto-generated method stub
+		this.currentAnimation=new Animation(path);
+		this.mainOffset=currentAnimation.mainOffset;
+		this.setPosition(this.coord.x-currentAnimation.mainOffset.x, this.coord.y-currentAnimation.mainOffset.y);
+		this.collisBox=currentAnimation.colisBox;
 	}
 	
 	

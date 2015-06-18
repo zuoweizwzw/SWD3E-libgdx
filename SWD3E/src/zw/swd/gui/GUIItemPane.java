@@ -10,7 +10,7 @@ import zw.swd.screen.SceneScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 
-public class GUIItemPane extends Paper{
+public class GUIItemPane extends GUIPane{
 
 	public ItemRoleListPanel itemrolelistpanel;
 	public GUIItemWindow itemwindow;
@@ -63,6 +63,7 @@ public class GUIItemPane extends Paper{
 	
 	public void show()
 	{
+		this.isshowing=true;
 		itemwindow.reset();
 		this.startParellAction(new ActorMoveAction(itemrolelistpanel,new Vector2(204,0),600f));
 		this.addAction(new ActorMoveAction(itemwindow,new Vector2(-(432),0),1500f));
@@ -71,11 +72,14 @@ public class GUIItemPane extends Paper{
 	
 	public void hide()
 	{
+		if(isshowing)
+		{
 		this.startParellAction(new ActorMoveAction(itemrolelistpanel,new Vector2(-204,0),600f));
 		this.addAction(new ActorMoveAction(itemwindow,new Vector2((432),0),1500f));
 		this.addAction(new ActorMoveAction(description,new Vector2(0,-(1+40)),140f));
 		this.addAction(new WaitAction(0.3f));
 		this.view.setVisible(false);
+		}
 	}
 	
 }

@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 
 public class EquipeRoleListPanel extends Paper{
 
+	private static EquipeRoleListPanel instance;
 	Picture background;
 	Picture avatar;
 
@@ -33,8 +34,17 @@ public class EquipeRoleListPanel extends Paper{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public static EquipeRoleListPanel getInstance()
+	{
+		if(instance==null)
+		{
+			instance=new EquipeRoleListPanel();
+		}
+		return instance;
+	}
 
-	public EquipeRoleListPanel() {
+	private EquipeRoleListPanel() {
 		// TODO Auto-generated constructor stub
 		this.setName("equiperolelistpanel");
 		background=new Picture(Config.resPath+"/gui/56-5(3).png");		

@@ -18,6 +18,8 @@ public class GUIEquipeListWindow extends SWDListWindow{
 
 	Picture background;
 	GameModel gameModel;
+	public int type;
+	private static GUIEquipeListWindow instance=null;
 	
 	@Override
 	public void drawCustomer(Batch batch, float parentAlpha) {
@@ -25,20 +27,48 @@ public class GUIEquipeListWindow extends SWDListWindow{
 		
 	}
 	
-	public GUIEquipeListWindow() {
+	public static GUIEquipeListWindow getInstance()
+	{
+		if(instance==null)
+		{
+			instance=new GUIEquipeListWindow();
+		}
+		return instance;
+	}
+	
+	private GUIEquipeListWindow() {
 		// TODO Auto-generated constructor stub
 		super(165,225,9);
 		this.setListYOffset(-3);
 		this.setName("guiequipelistwindow");
-		this.setItemType(SWDTestListItem.class);
+		this.setItemType(GUIEquipeListItem.class);
 		App app=(App) Gdx.app.getApplicationListener();
-		ArrayList<GameItem> objects=app.gameModel.items;
-		this.fillData(objects);
+//		ArrayList<GameItem> objects=app.gameModel.getItemsByType(-1);
+//		this.fillData(objects);
 	}
 	
 	public void fillData(int type,GameModel model)
 	{
 		this.gameModel=model;
+	}
+	
+	@Override
+	public void reset()
+	{
+		this.list.clearData();
+		this.list.reset();
+	}
+	
+	public void updateData()
+	{
+		this.updateData(this.type);
+	}
+	
+	public void updateData(int type)
+	{
+		this.type=type;
+		ArrayList<GameItem> items=GameModel.getInstance().getItemsByType(type);
+		this.updateData(items);
 	}
 
 }

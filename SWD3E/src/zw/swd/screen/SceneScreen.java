@@ -12,6 +12,7 @@ import zw.swd.game.actions.ActorMoveAction;
 import zw.swd.game.actions.SceneActorMoveAction;
 import zw.swd.game.actions.SceneActorRunAction;
 import zw.swd.game.actions.SceneActorWalkAction;
+import zw.swd.graphics.Sprite;
 import zw.swd.graphics.scene.SceneActor;
 import zw.swd.graphics.scene.SceneMap;
 import zw.swd.gui.ControlFactory;
@@ -233,6 +234,7 @@ public class SceneScreen extends SWDScreen {
 
 	public void setSceneMap(SceneMap sceneMap) {
 		this.sceneMap = sceneMap;
+		this.spriteMgr.removeActors(SceneMap.class);
 		this.spriteMgr.addActor(sceneMap);
 	}
 
@@ -291,4 +293,18 @@ public class SceneScreen extends SWDScreen {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public boolean checkColis(Sprite sprite,Vector2 delta)
+	{
+		
+		Vector2 location=this.actor.getCoordCopy();
+		
+		return false;
+	}
+	
+	private void addSprite(Sprite sprite)
+	{
+		this.sceneMap.sprites.addActor(sprite);
+	}
+	
 }

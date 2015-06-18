@@ -47,8 +47,8 @@ public class SceneActorWalkAction extends SceneActorMoveAction{
 				{
 				if(stopCmd==true) 
 				{
-					if(this.actor.getCurrentAni().getCurrentFrameIndex()==3||
-							this.actor.getCurrentAni().getCurrentFrameIndex()==7)
+//					if(this.actor.getCurrentAni().getCurrentFrameIndex()==3||
+//							this.actor.getCurrentAni().getCurrentFrameIndex()==7)
 					{
 						this.status=2;
 						this.actor.nextAni("stand_"+Mappings.getDirectionNameByDirection(direction));

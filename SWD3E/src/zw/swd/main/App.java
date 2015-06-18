@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.lwjgl.input.Mouse;
 
+import zw.swd.exscreens.MapDefiner;
 import zw.swd.game.GameModel;
 import zw.swd.screen.FightScreen;
 import zw.swd.screen.SWDScreen;
@@ -22,6 +23,7 @@ import zw.swd.utils.TestUtils;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class App extends Game{
 
@@ -40,11 +42,12 @@ public class App extends Game{
 		this.currentScreen=screen;
 		Gdx.input.setCursorCatched(true);
 		Mouse.setClipMouseCoordinatesToWindow(true);
+		
 //		MapMatcher matcher=new MapMatcher(batch);
 //		setScreen(matcher);
 //		Gdx.input.setInputProcessor(matcher);
 		
-//		MapDefiner definer=new MapDefiner(batch);
+//		MapDefiner definer=new MapDefiner(new SpriteBatch());
 //		setScreen(definer);
 //		Gdx.input.setInputProcessor(definer);
 		
@@ -66,7 +69,7 @@ public class App extends Game{
 //		SceneEventsLoader.loadScripts("methods");
 		FaceLoader.loadFaces();
 //		MagicLoader.loadMagics("51","53");
-		ItemLoader.loadItems("0017","0004","0064","0170","0281","0284","0057");
+		ItemLoader.loadItems("0017","0004","0064","0170","0281","0284","0057","0224");
 //		FightMapLoader.loadFightMap("1-1");
 //		FightRoleLoader.loadFightRole("001");
 //		FightRoleLoader.loadFightRole("002");

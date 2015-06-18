@@ -2,6 +2,8 @@ package zw.swd.gui;
 
 import java.util.ArrayList;
 
+import zw.swd.game.GameModel;
+import zw.swd.game.ItemModel;
 import zw.swd.game.RoleModel;
 import zw.swd.graphics.Animation;
 import zw.swd.main.Cache;
@@ -17,7 +19,8 @@ public class GUIEquipeStatusItem extends Paper{
 	public Label label;
 	public Picture icon;
 	public Label item;
-	public boolean selected=false;
+	public ItemModel model;
+	private boolean selected=false;
 	public int type=0;//0武器1头部2身体3手部4足部5饰品一6饰品二7法宝一8法宝二9护驾一10护架二
 	@Override
 	public void drawCustomer(Batch batch, float parentAlpha) {
@@ -98,17 +101,20 @@ public class GUIEquipeStatusItem extends Paper{
 	
 	public void fillData(RoleModel role)
 	{
-		if(this.type==0&&!role.weapon.equals("")) this.item.setText(Cache.items.get(role.weapon).name);
-		if(this.type==1&&!role.head.equals("")) this.item.setText(Cache.items.get(role.head).name);
-		if(this.type==2&&!role.body.equals("")) this.item.setText(Cache.items.get(role.body).name);
-		if(this.type==3&&!role.hand.equals("")) this.item.setText(Cache.items.get(role.hand).name);
-		if(this.type==4&&!role.foot.equals("")) this.item.setText(Cache.items.get(role.foot).name);
-		if(this.type==5&&!role.attach1.equals("")) this.item.setText(Cache.items.get(role.attach1).name);
-		if(this.type==6&&!role.attach2.equals("")) this.item.setText(Cache.items.get(role.attach2).name);
-		if(this.type==7&&!role.fabao1.equals("")) this.item.setText(Cache.items.get(role.fabao1).name);
-		if(this.type==8&&!role.fabao2.equals("")) this.item.setText(Cache.items.get(role.fabao2).name);
-		if(this.type==9&&!role.hujia1.equals("")) this.item.setText(Cache.items.get(role.hujia1).name);
-		if(this.type==10&&!role.hujia2.equals("")) this.item.setText(Cache.items.get(role.hujia2).name);
+		if(this.type==0&&!role.weapon.equals("")) this.model=Cache.items.get(role.weapon);
+		if(this.type==1&&!role.head.equals("")) this.model=Cache.items.get(role.head);
+		if(this.type==2&&!role.body.equals("")) this.model=Cache.items.get(role.body);
+		if(this.type==3&&!role.hand.equals("")) this.model=Cache.items.get(role.hand);
+		if(this.type==4&&!role.foot.equals("")) this.model=Cache.items.get(role.foot);
+		if(this.type==5&&!role.attach1.equals("")) this.model=Cache.items.get(role.attach1);
+		if(this.type==6&&!role.attach2.equals("")) this.model=Cache.items.get(role.attach2);
+		if(this.type==7&&!role.fabao1.equals("")) this.model=Cache.items.get(role.fabao1);
+		if(this.type==8&&!role.fabao2.equals("")) this.model=Cache.items.get(role.fabao2);
+		if(this.type==9&&!role.hujia1.equals("")) this.model=Cache.items.get(role.hujia1);
+		if(this.type==10&&!role.hujia2.equals("")) this.model=Cache.items.get(role.hujia2);
+		
+		if(this.model!=null) this.item.setText(this.model.name);
+		
 	}
 
 	@Override
@@ -116,6 +122,18 @@ public class GUIEquipeStatusItem extends Paper{
 		// TODO Auto-generated method stub
 		if(this.isMouseIn())
 		{
+			this.setFocus(true);
+		}
+	}
+	
+	public void setFocus(boolean focus)
+	{
+		if(focus)
+		{
+			if(!this.selected)
+			{
+				GUIEquipeChangeWindow.getInstance().clearData();
+			}
 			this.selected=true;
 			GUIEquipeStatusWindow parent=(GUIEquipeStatusWindow) this.getParent();
 			ArrayList<Actor> actors=parent.findActors(GUIEquipeStatusItem.class);
@@ -124,13 +142,84 @@ public class GUIEquipeStatusItem extends Paper{
 				if(actor!=this)
 				{
 					GUIEquipeStatusItem item=(GUIEquipeStatusItem) actor;
-					item.selected=false;
+					item.setFocus(false);
 				}
 			}
 			if(type==0)
 			{
-				GUIEquipePane.getInstance().guiequipelistwindow.updataData();
+				if(GUIEquipePane.getInstance().getCurrentRoleModel().resCode.equals("001"))
+					GUIEquipePane.getInstance().guiequipelistwindow.updateData(1);
+				
+			}
+			
+			if(type==1)
+			{
+				if(GUIEquipePane.getInstance().getCurrentRoleModel().resCode.equals("001"))
+					GUIEquipePane.getInstance().guiequipelistwindow.updateData(5);
+			}
+			
+			if(type==2)
+			{
+				if(GUIEquipePane.getInstance().getCurrentRoleModel().resCode.equals("001"))
+					GUIEquipePane.getInstance().guiequipelistwindow.updateData(7);
+			}
+			
+			if(type==3)
+			{
+				if(GUIEquipePane.getInstance().getCurrentRoleModel().resCode.equals("001"))
+					GUIEquipePane.getInstance().guiequipelistwindow.updateData(9);
+			}
+			
+			if(type==4)
+			{
+				if(GUIEquipePane.getInstance().getCurrentRoleModel().resCode.equals("001"))
+					GUIEquipePane.getInstance().guiequipelistwindow.updateData(11);
+			}
+			
+			if(type==5||type==6)
+			{
+				if(GUIEquipePane.getInstance().getCurrentRoleModel().resCode.equals("001"))
+					GUIEquipePane.getInstance().guiequipelistwindow.updateData(13);
+			}
+			
+			if(type==7||type==8)
+			{
+				if(GUIEquipePane.getInstance().getCurrentRoleModel().resCode.equals("001"))
+					GUIEquipePane.getInstance().guiequipelistwindow.updateData(14);
+			}
+			
+			if(type==9||type==10)
+			{
+				if(GUIEquipePane.getInstance().getCurrentRoleModel().resCode.equals("001"))
+					GUIEquipePane.getInstance().guiequipelistwindow.updateData(15);
 			}
 		}
+		else
+		{
+			this.selected=false;
+		}
+	}
+	
+	public boolean isSelected()
+	{
+		return this.selected;
+	}
+	
+	public String getLocationFromType()
+	{
+		String location="";
+		if(type==0) location="weapon";
+		if(type==1) location="head";
+		if(type==2) location="body";
+		if(type==3) location="hand";
+		if(type==4) location="foot";
+		if(type==5) location="attach1";
+		if(type==6) location="attach2";
+		if(type==7) location="fabao1";
+		if(type==8) location="fabao2";
+		if(type==9) location="hujia1";
+		if(type==10) location="hujia2";
+		
+		return location;
 	}
 }

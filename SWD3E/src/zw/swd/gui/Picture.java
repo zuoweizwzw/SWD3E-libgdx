@@ -54,11 +54,16 @@ public class Picture extends Paper{
 	@Override
 	public void setAnimation(Animation animation) {
 		// TODO Auto-generated method stub
-		super.setAnimation(animation);
-		Vector2 size=this.getAnimation().getSize();
-		this.setSize(size.x,size.y);
-		
+		if(animation!=null)
+		{
+			super.setAnimation(animation);
+			Vector2 size=this.getAnimation().getSize();
+			this.setSize(size.x,size.y);
+		}
+		else super.setAnimation(animation);
 	}
+	
+	
 	
 	public int getPicWidth()
 	{

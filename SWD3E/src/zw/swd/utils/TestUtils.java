@@ -75,15 +75,23 @@ public class TestUtils {
 	
 	public static GameModel generateTestGameModel()
 	{
-		GameModel gameModel=new GameModel();
+		GameModel gameModel=GameModel.getInstance();
 		gameModel.members.add(generateRoleModel("001"));
 		for(int i=0;i<16;i++)
 		{
 		GameItem gameItem=new GameItem(Cache.items.get("0017"));
-		gameModel.items.add(gameItem);
+		gameModel.addItem(gameItem);
 		}
 		GameItem gameItem=new GameItem(Cache.items.get("0004"));
-		gameModel.items.add(gameItem);
+		gameModel.addItem(gameItem);
+		
+		
+		gameModel.addItem(new GameItem(Cache.items.get("0064")));
+		gameModel.addItem(new GameItem(Cache.items.get("0284")));
+		gameModel.addItem(new GameItem(Cache.items.get("0170")));
+		gameModel.addItem(new GameItem(Cache.items.get("0281")));
+		gameModel.addItem(new GameItem(Cache.items.get("0057")));
+		gameModel.addItem(new GameItem(Cache.items.get("0224")));
 		return gameModel;
 	}
 }

@@ -45,6 +45,18 @@ public class ItemLoader {
 			{
 				itemModel.use_hp=Integer.parseInt(line.split(":")[1]);
 			}
+			if(line.indexOf("equipe_attack")>=0)
+			{
+				itemModel.equipe_attack=Integer.parseInt(line.split(":")[1]);
+			}
+			if(line.indexOf("equipe_defense")>=0)
+			{
+				itemModel.equipe_defense=Integer.parseInt(line.split(":")[1]);
+			}
+			if(line.indexOf("equipe_agility")>=0)
+			{
+				itemModel.equipe_agility=Integer.parseInt(line.split(":")[1]);
+			}
 		}
 		}
 		catch(Exception e)

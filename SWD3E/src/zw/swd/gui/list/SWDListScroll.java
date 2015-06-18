@@ -77,13 +77,8 @@ public class SWDListScroll extends Paper{
 	@Override
 	public void drawCustomer(Batch batch, float parentAlpha) {
 		// TODO Auto-generated method stub
-		if(rect!=null)
+		if(maxCap!=0)
 		{
-//			float rate=(float)13/cap;
-//			float origin=(int) (16+324-324*rate);
-//			float delta=(float)index*324/cap;
-//			int y=(int) (origin-delta);
-//			rect.setY(y);
 			float rate=((float)this.capacity)/maxCap;
 			float origin=this.background.getY()+this.background.getPicHeight();
 			float delta=index*this.background.getPicHeight()/maxCap;

@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class GUIEquipeStatusWindow extends Paper{
 
+	private static GUIEquipeStatusWindow instance;
 	Picture background;
 	GUIEquipeStatusItem weapon;
 	GUIEquipeStatusItem head;
@@ -23,13 +24,23 @@ public class GUIEquipeStatusWindow extends Paper{
 	GUIEquipeStatusItem hujia1;
 	GUIEquipeStatusItem hujia2;
 	RoleModel roleModel;
+	
+	public static GUIEquipeStatusWindow getInstance()
+	{
+		if(instance==null)
+		{
+			instance=new GUIEquipeStatusWindow();
+		}
+		return instance;
+	}
+	
 	@Override
 	public void drawCustomer(Batch batch, float parentAlpha) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public GUIEquipeStatusWindow() {
+	private GUIEquipeStatusWindow() {
 		// TODO Auto-generated constructor stub
 		this.setName("guiequipestatuswindow");
 		
@@ -104,5 +115,33 @@ public class GUIEquipeStatusWindow extends Paper{
 			GUIEquipeStatusItem item=(GUIEquipeStatusItem) actor;
 			item.fillData(model);
 		}
+	}
+	
+	public void fillData()
+	{
+		this.fillData(this.roleModel);
+	}
+	
+	public void reset()
+	{
+		ArrayList<Actor> actors=this.findActors(GUIEquipeStatusItem.class);
+		for(Actor actor:actors)
+		{
+			GUIEquipeStatusItem item=(GUIEquipeStatusItem)actor;
+			item.setFocus(false);
+		}
+	}
+	
+	public GUIEquipeStatusItem getSelectedItem()
+	{
+		GUIEquipeStatusItem value=null;
+		
+		for(Actor actor:this.findActors(GUIEquipeStatusItem.class))
+		{
+			GUIEquipeStatusItem item=(GUIEquipeStatusItem) actor;
+			if(item.isSelected()) return item;
+		}
+		
+		return value;
 	}
 }

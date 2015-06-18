@@ -148,6 +148,7 @@ public class MapDefiner implements Screen, InputProcessor{
 	@Override
 	public void render(float delta) {
 		// TODO Auto-generated method stub
+		batch.begin();
 		batch.draw(map, mapx, mapy);
 		batch.end();
 		Gdx.gl.glEnable(GL20.GL_BLEND);
@@ -159,7 +160,7 @@ public class MapDefiner implements Screen, InputProcessor{
 		{
 			for(int j=0;j<data.data[i].length;j++)
 			{
-				if(data.data[i][j]==1) renderer.rect(j*8, i*8, 8, 8);
+				if(data.data[i][j]==1) renderer.rect(j*8, 480-i*8-8, 8, 8);
 			}
 		}
 		
@@ -171,14 +172,14 @@ public class MapDefiner implements Screen, InputProcessor{
 		
 		if(Gdx.input.isButtonPressed(Buttons.LEFT))
 		{
-			data.data[(480-my)/8][(mx/8)]=1;
+			data.data[(my)/8][(mx/8)]=1;
 		}
 		if(Gdx.input.isButtonPressed(Buttons.RIGHT))
 		{
-			data.data[(480-my)/8][(mx/8)]=0;
+			data.data[(my)/8][(mx/8)]=0;
 		}
 		Gdx.gl.glDisable(GL20.GL_BLEND);
-		batch.begin();
+
 	}
 
 	@Override

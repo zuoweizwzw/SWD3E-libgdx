@@ -96,7 +96,7 @@ public class GUIItemItem extends SWDListItem{
 	}
 	
 	@Override
-	public void onDoubleClickEvent(int button) {
+	public boolean onDoubleClickEvent(int button) {
 		// TODO Auto-generated method stub
 		if(isMouseIn())
 		{
@@ -117,7 +117,9 @@ public class GUIItemItem extends SWDListItem{
 				}
 				
 			}
+			return true;
 		}
+		return false;
 	}
 	
 }

@@ -66,4 +66,15 @@ public class Mappings {
 		else if(v.x<0&&v.y>0) return 7;
 		else return -1;
 	}
+	
+	public static Vector2 convertFromCoordToPot(Vector2 coord)
+	{
+		Vector2 v=new Vector2();
+		int x=(int)coord.x/8;
+		int y=(int)coord.y/8;
+		
+		v.set(x, y);
+		
+		return v;
+	}
 }

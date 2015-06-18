@@ -8,6 +8,7 @@ public abstract class SceneActorMoveAction extends SWDAction{
 
 	public boolean stopCmd=false;
 	public int direction;
+	public boolean checkColis=false;
 	public void sendStopCmd()
 	{
 		this.stopCmd=true;
