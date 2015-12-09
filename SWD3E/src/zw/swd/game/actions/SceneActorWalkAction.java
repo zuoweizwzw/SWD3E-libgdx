@@ -1,9 +1,12 @@
 package zw.swd.game.actions;
 
 import zw.swd.graphics.scene.SceneActor;
+import zw.swd.main.App;
 import zw.swd.math.Vector2;
+import zw.swd.screen.SceneScreen;
 import zw.swd.utils.Mappings;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.actions.RelativeTemporalAction;
 
@@ -42,6 +45,7 @@ public class SceneActorWalkAction extends SceneActorMoveAction{
 		}
 		if(status==1)
 		{
+			
 			{
 				if(this.delta==null)
 				{
@@ -58,6 +62,7 @@ public class SceneActorWalkAction extends SceneActorMoveAction{
 				}
 				else
 				{
+					
 					if(this.targetDelta.len()>=this.delta.len())
 					{
 						this.status=2;
@@ -67,8 +72,18 @@ public class SceneActorWalkAction extends SceneActorMoveAction{
 						return true;
 					}
 				}
-				this.actor.getCurrentAni().nextFrame(delta);
+				
 				Vector2 direction=Mappings.getDirectionVectorByDirection(this.direction);
+				App app=(App)Gdx.app.getApplicationListener();
+				SceneScreen screen=(SceneScreen) app.currentScreen;
+				boolean meetbarrier=screen.sceneMap.meetBarrier(this.actor, direction.mulNew(32*delta));
+				if(meetbarrier)
+				{
+					this.status=2;
+					this.actor.nextAni("stand_"+Mappings.getDirectionNameByDirection(this.direction));
+					return true;
+				}
+				this.actor.getCurrentAni().nextFrame(delta);
 				this.actor.moveBy(delta*direction.x*32, delta*direction.y*32);
 				if(this.delta!=null)
 				{

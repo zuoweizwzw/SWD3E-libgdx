@@ -42,17 +42,20 @@ public class FontLoader {
 		p18.borderWidth=1;
 		p18.shadowOffsetX=1;//y>0向下
 		p18.shadowOffsetY=1;
+		p18.incremental=true;
 		p24.size=22;
 		p24.borderWidth=1;
 		p24.shadowOffsetX=1;
 		p24.shadowOffsetY=1;
+		p24.incremental=true;
 		p14.size=13;
 		p14.borderWidth=1;
 		p14.shadowOffsetX=1;
 		p14.shadowOffsetY=1;
+		p14.incremental=true;
 		StringBuffer sb=new StringBuffer();
 		
-		loadCharset(sb);
+//		loadCharset(sb);
 		
 		sb.append(FreeTypeFontGenerator.DEFAULT_CHARS);
 		p18.characters=sb.toString();

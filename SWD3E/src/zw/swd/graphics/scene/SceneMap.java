@@ -8,11 +8,11 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 
 import zw.swd.graphics.SceneGroup;
 import zw.swd.graphics.Sprite;
+import zw.swd.math.Vector2;
 
 public class SceneMap extends Group{
 
@@ -60,6 +60,31 @@ public class SceneMap extends Group{
 		}
 		renderer.end();
 		batch.begin();
+	}
+	
+	public ArrayList<Sprite> getColisObjects(Sprite source)
+	{
+		ArrayList<Sprite> objects=new ArrayList<>();
+		for(Sprite sprite:this.sprites.getSprites())
+		{
+			if(sprite.isColis(source))
+			{
+				objects.add(sprite);
+				
+			}
+		}
+		return objects;
+	}
+	
+	public boolean meetBarrier(Sprite sprite, Vector2 delta)
+	{
+		Vector2 target=sprite.getCoordCopy().addNew(delta);
+		
+		int x=(int) (target.x/8);
+		int y=(int) (target.y/8);
+		if(data[y][x]==0) return true;
+
+		return false;
 	}
 	
 	

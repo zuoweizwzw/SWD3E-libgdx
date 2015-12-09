@@ -1,5 +1,6 @@
 package zw.swd.graphics;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -26,7 +27,18 @@ public class SceneGroup extends Group{
 		
 	}
 	
-	
+	public ArrayList<Sprite> getSprites()
+	{
+		ArrayList<Sprite> sprites=new ArrayList<>();
+		for(Actor actor:this.getChildren())
+		{
+			if(actor instanceof Sprite)
+			{
+				sprites.add((Sprite)actor);
+			}
+		}
+		return sprites;
+	}
 	
 	
 	

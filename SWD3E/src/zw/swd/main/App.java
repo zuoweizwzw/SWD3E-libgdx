@@ -1,8 +1,12 @@
 package zw.swd.main;
 
+import java.io.IOException;
 import java.util.HashMap;
 
+import org.lwjgl.LWJGLException;
+import org.lwjgl.input.Cursor;
 import org.lwjgl.input.Mouse;
+import org.newdawn.slick.opengl.CursorLoader;
 
 import zw.swd.exscreens.MapDefiner;
 import zw.swd.game.GameModel;
@@ -40,8 +44,20 @@ public class App extends Game{
 		Gdx.input.setInputProcessor(screen);
 		this.setScreen(screen);
 		this.currentScreen=screen;
-		Gdx.input.setCursorCatched(true);
 		Mouse.setClipMouseCoordinatesToWindow(true);
+		
+//		Mouse.setGrabbed(true);
+		try {
+			Cursor cursor=CursorLoader.get().getCursor("F:/SWD3E"+"\\gui\\37-1.png", 0, 0);
+			
+			Mouse.setNativeCursor(cursor);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (LWJGLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 //		MapMatcher matcher=new MapMatcher(batch);
 //		setScreen(matcher);
@@ -68,11 +84,11 @@ public class App extends Game{
 		SceneEventsLoader.loadScripts("1");
 //		SceneEventsLoader.loadScripts("methods");
 		FaceLoader.loadFaces();
-//		MagicLoader.loadMagics("51","53");
+		MagicLoader.loadMagics("51","53");
 		ItemLoader.loadItems("0017","0004","0064","0170","0281","0284","0057","0224");
-//		FightMapLoader.loadFightMap("1-1");
-//		FightRoleLoader.loadFightRole("001");
-//		FightRoleLoader.loadFightRole("002");
+		FightMapLoader.loadFightMap("1-1");
+		FightRoleLoader.loadFightRole("001");
+		FightRoleLoader.loadFightRole("002");
 		GUILoader.loadControls();
 		GameModel gameModel=TestUtils.generateTestGameModel();
 		this.gameModel=gameModel;

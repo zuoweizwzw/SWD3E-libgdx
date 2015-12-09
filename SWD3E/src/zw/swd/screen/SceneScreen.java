@@ -78,11 +78,11 @@ public class SceneScreen extends SWDScreen {
 		// TODO Auto-generated method stub
 		
 		super.render(delta);
-		if(this.rootAction.size()==0&&gameState==1)
+		if(this.rootAction.getActions().size==0&&gameState==1)
 		{
 			this.gameState=0;
 		}
-		else if(this.rootAction.size()!=0)
+		else if(this.rootAction.getActions().size!=0)
 		{
 			this.gameState=1;
 		}
@@ -298,6 +298,9 @@ public class SceneScreen extends SWDScreen {
 	{
 		
 		Vector2 location=this.actor.getCoordCopy();
+		 
+		//check map
+		
 		
 		return false;
 	}

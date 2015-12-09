@@ -168,6 +168,11 @@ public class Sprite extends Actor implements AnimatedActor{
 		this.setPosition(this.coord.x-currentAnimation.mainOffset.x, this.coord.y-currentAnimation.mainOffset.y);
 		this.collisBox=currentAnimation.colisBox;
 	}
+
+	public boolean isColis(Sprite source) {
+		// TODO Auto-generated method stub
+		return collisBox.overlaps(source.collisBox);
+	}
 	
 	
 	

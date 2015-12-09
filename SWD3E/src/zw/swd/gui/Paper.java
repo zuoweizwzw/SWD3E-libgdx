@@ -240,7 +240,7 @@ public abstract class Paper extends Group implements AnimatedActor{
 	
 	public boolean isActing()
 	{
-		if(this.rootSequence.size()!=0||this.getActions().size!=0)
+		if(this.sequence.getActions().size !=0||this.getActions().size!=0)
 		{
 			return true;
 		}

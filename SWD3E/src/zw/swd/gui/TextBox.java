@@ -21,15 +21,14 @@ public class TextBox extends Paper{
 	public TextBox() {
 		// TODO Auto-generated constructor stub
 		font=FontLoader.font24;
-		font.setMarkupEnabled(true);
-		
+		font.getData().markupEnabled=true;
 		
 	}
 	@Override
 	public void drawCustomer(Batch batch, float parentAlpha) {
 		// TODO Auto-generated method stub
-		font.drawMultiLine(batch, text, this.getX()+firstCharOffset, this.getY()+firstLineHeight);
-		int totalWidth=(int)font.getBounds(text).width/320+1;
+		font.draw(batch, text, this.getX()+firstCharOffset, this.getY()+firstLineHeight);
+		
 		
 		
 	}

@@ -6,6 +6,7 @@ import zw.swd.action.SWDAction;
 import zw.swd.gui.Dialog1;
 import zw.swd.screen.SWDScreen;
 
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.scenes.scene2d.Action;
 
 public class ShowDialogTextAction extends SWDAction{
@@ -54,7 +55,9 @@ public class ShowDialogTextAction extends SWDAction{
 				{
 					showText.add(new StringBuffer());
 				}
-				if(dialog.textBox.font.getBounds(showText.get(showText.size()-1)).width>480)
+				GlyphLayout layout=new GlyphLayout();
+				layout.setText(dialog.textBox.font, showText.get(showText.size()-1));
+				if(layout.width>480)
 				{
 					showText.get(showText.size()-1).append("\n");
 					showText.add(new StringBuffer());

@@ -39,7 +39,6 @@ public abstract class SWDScreen extends Actor implements Screen,InputProcessor{
 		// TODO Auto-generated method stub
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
 		rootAction.act(delta);
 		
 		
@@ -50,7 +49,7 @@ public abstract class SWDScreen extends Actor implements Screen,InputProcessor{
 		guiMgr.draw();
 		guiMgr.act(delta);
 		
-		Cursor.current.draw();
+		
 		
 	}
 	

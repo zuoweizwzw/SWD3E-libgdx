@@ -49,22 +49,32 @@ public class SceneActorRunAction extends SceneActorMoveAction{
 					{
 						this.status=2;
 						this.actor.nextAni("stand_"+Mappings.getDirectionNameByDirection(this.direction));
-						System.out.println(this.actor.getCoordX()+","+this.actor.getCoordY());
+//						System.out.println(this.actor.getCoordX()+","+this.actor.getCoordY());
 						
 						return true;
 					}
 				}
 				
-				if(checkColis)
+//				if(checkColis)
+//				{
+//					App app=(App) Gdx.app.getApplicationListener();
+//					SceneScreen screen=(SceneScreen) app.currentScreen;
+//					
+//					boolean colis=screen.checkColis(this.actor,new Vector2(delta*direction.x*96, delta*direction.y*96));
+//					if(colis)
+//					{
+//						this.stopCmd=true;
+//					}
+//				}
+				
+				App app=(App)Gdx.app.getApplicationListener();
+				SceneScreen screen=(SceneScreen) app.currentScreen;
+				boolean meetbarrier=screen.sceneMap.meetBarrier(this.actor, direction.mulNew(96*delta));
+				if(meetbarrier)
 				{
-					App app=(App) Gdx.app.getApplicationListener();
-					SceneScreen screen=(SceneScreen) app.currentScreen;
-					
-					boolean colis=screen.checkColis(this.actor,new Vector2(delta*direction.x*96, delta*direction.y*96));
-					if(colis)
-					{
-						this.stopCmd=true;
-					}
+					this.status=2;
+					this.actor.nextAni("stand_"+Mappings.getDirectionNameByDirection(this.direction));
+					return true;
 				}
 				
 				this.actor.getCurrentAni().nextFrame(delta);
