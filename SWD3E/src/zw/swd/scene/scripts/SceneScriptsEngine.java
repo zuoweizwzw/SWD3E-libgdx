@@ -1,5 +1,6 @@
 package zw.swd.scene.scripts;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
@@ -14,6 +15,7 @@ import zw.swd.gui.actions.OpenDialogAction;
 import zw.swd.gui.actions.ShowDialogTextAction;
 import zw.swd.gui.actions.StartFightAction;
 import zw.swd.gui.actions.WaitMouseClickAction;
+import zw.swd.main.App;
 import zw.swd.math.Vector2;
 import zw.swd.screen.SceneScreen;
 
@@ -26,6 +28,12 @@ public class SceneScriptsEngine {
 		this.screen=sceneScreen;
 	}
 
+	public SceneScriptsEngine() {
+		// TODO Auto-generated constructor stub
+		
+		this((SceneScreen) ((App)Gdx.app.getApplicationListener()).currentScreen);
+	}
+	
 	public Action opendialog()
 	{
 		SWDAction action=new OpenDialogAction(screen,"face/001/1r");

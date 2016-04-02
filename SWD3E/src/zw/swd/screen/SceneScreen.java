@@ -61,6 +61,7 @@ public class SceneScreen extends SWDScreen {
 		// TODO Auto-generated constructor stub
 		super();
 		this.setSceneMap(MapLoader.loadSceneMap("1-1"));
+		
 		actor = new SceneActor("001");
 		actor.pool = SceneActorLoader.loadSceneActorAnis("001");
 		actor.setCurrentAniByName("stand_left");
@@ -113,7 +114,6 @@ public class SceneScreen extends SWDScreen {
 //				new StartFightAction(this)
 //				);
 //		this.guiMgr.addAction(sequence);
-		
 		
 //		SequenceAction sequence=Actions.sequence(new OpenDialogAction(this,"face/001/1r"));
 //		sequence.addAction(new ShowDialogTextAction(this,"[#0000FF]陈靖仇:\n[#FFFBFF]我的家乡已经受到了严重的威胁！请求援助！"));

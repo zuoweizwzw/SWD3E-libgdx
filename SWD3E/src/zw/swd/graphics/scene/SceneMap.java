@@ -8,8 +8,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Group;
 
+import zw.swd.game.event.MapEvent;
 import zw.swd.graphics.SceneGroup;
 import zw.swd.graphics.Sprite;
 import zw.swd.math.Vector2;
@@ -24,6 +26,7 @@ public class SceneMap extends Group{
 	public Group masks=new Group();
 	public SceneGroup sprites=new SceneGroup();
 	public int[][] data;
+	public Group mapEvents=new Group();
 	
 	public SceneMap(String mapNum) {
 		// TODO Auto-generated constructor stub
@@ -31,6 +34,7 @@ public class SceneMap extends Group{
 		this.addActor(background);
 		this.addActor(sprites);
 		this.addActor(masks);
+		this.addActor(mapEvents);
 	
 	}
 	
@@ -76,6 +80,11 @@ public class SceneMap extends Group{
 		return objects;
 	}
 	
+	public void checkMap()
+	{
+		
+	}
+	
 	public boolean meetBarrier(Sprite sprite, Vector2 delta)
 	{
 		Vector2 target=sprite.getCoordCopy().addNew(delta);
@@ -87,5 +96,20 @@ public class SceneMap extends Group{
 		return false;
 	}
 	
+	public void addMapEvent(MapEvent mapEvent)
+	{
+		this.mapEvents.addActor(mapEvent);
+	}
+	
+//	public MapEvent meetMapEvent(Sprite sprite)
+//	{
+//		Vector2 coord=new Vector2(sprite.getCoordX(),sprite.getCoordY());
+//		boolean meet=event.getRect().contains(coord.getGdxVector2());
+//		for(MapEvent event:this.mapEvents.getChildren())
+//		{
+//			if()
+//		}
+//		return meet;
+//	}
 	
 }

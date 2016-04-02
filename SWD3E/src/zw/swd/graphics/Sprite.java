@@ -29,15 +29,14 @@ public class Sprite extends Actor implements AnimatedActor{
 	public void draw(Batch batch, float parentAlpha) {
 		// TODO Auto-generated method stub
 	if(currentAnimation!=null) 
+	{
+		currentAnimation.draw(this.getX(), this.getY(), batch,getColor(),alpha);
+		if(currentAnimation.frames.size()>0)
 		{
-		
-			currentAnimation.draw(this.getX(), this.getY(), batch,getColor(),alpha);
-			if(currentAnimation.frames.size()>0)
-			{
-				this.setHeight(currentAnimation.getSize().y);
-				this.setWidth(currentAnimation.getSize().x);
-			}
+			this.setHeight(currentAnimation.getSize().y);
+			this.setWidth(currentAnimation.getSize().x);
 		}
+	}
 	
 	}
 

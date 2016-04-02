@@ -77,6 +77,8 @@ public class SceneActorRunAction extends SceneActorMoveAction{
 					return true;
 				}
 				
+//				boolean meetMapEvent=screen.sceneMap.meetMapEvent(this.actor, event)
+				
 				this.actor.getCurrentAni().nextFrame(delta);
 				
 				this.actor.moveBy(delta*direction.x*96, delta*direction.y*96);

@@ -532,4 +532,10 @@ public class Vector2 implements Serializable, Vector<Vector2>{
 		
 		return vec.add(v);
 	}
+	
+	public com.badlogic.gdx.math.Vector2 getGdxVector2()
+	{
+		com.badlogic.gdx.math.Vector2 vector=new com.badlogic.gdx.math.Vector2(this.x, this.y);
+		return vector;
+	}
 }
