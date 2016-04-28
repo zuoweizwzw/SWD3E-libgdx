@@ -1,5 +1,6 @@
 package zw.swd.game.actions;
 
+import zw.swd.game.event.MapEvent;
 import zw.swd.graphics.scene.SceneActor;
 import zw.swd.main.App;
 import zw.swd.math.Vector2;
@@ -83,6 +84,18 @@ public class SceneActorWalkAction extends SceneActorMoveAction{
 					this.actor.nextAni("stand_"+Mappings.getDirectionNameByDirection(this.direction));
 					return true;
 				}
+				
+				
+				//检测碰触事件
+				MapEvent mapEvent=screen.sceneMap.meetMapEvent(this.actor);
+				if(mapEvent!=null)
+				{
+					this.status=2;
+					this.actor.nextAni("stand_"+Mappings.getDirectionNameByDirection(this.direction));
+					mapEvent.trigger();
+					return true;
+				}
+				
 				this.actor.getCurrentAni().nextFrame(delta);
 				this.actor.moveBy(delta*direction.x*32, delta*direction.y*32);
 				if(this.delta!=null)

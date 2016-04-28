@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 
 import zw.swd.game.event.MapEvent;
@@ -45,6 +46,7 @@ public class SceneMap extends Group{
 		drawRect(batch, parentAlpha);
 	}
 	
+	//画地图可走的方块
 	private void drawRect(Batch batch,float parentAlpha)
 	{
 		batch.end();
@@ -52,8 +54,6 @@ public class SceneMap extends Group{
 		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		renderer.begin(ShapeType.Filled);
 		renderer.setColor(new Color(1,0,0,0.7f));
-		
-		
 		
 		for(int i=0;i<data.length;i++)
 		{
@@ -101,15 +101,17 @@ public class SceneMap extends Group{
 		this.mapEvents.addActor(mapEvent);
 	}
 	
-//	public MapEvent meetMapEvent(Sprite sprite)
-//	{
-//		Vector2 coord=new Vector2(sprite.getCoordX(),sprite.getCoordY());
-//		boolean meet=event.getRect().contains(coord.getGdxVector2());
-//		for(MapEvent event:this.mapEvents.getChildren())
-//		{
-//			if()
-//		}
-//		return meet;
-//	}
+	public MapEvent meetMapEvent(Sprite sprite)
+	{
+		Vector2 coord=new Vector2(sprite.getCoordX(),sprite.getCoordY());
+		MapEvent mapEvent=null;
+		for(Actor event_actor:this.mapEvents.getChildren())
+		{
+			MapEvent event=(MapEvent) event_actor;
+			boolean meet=event.getRect().contains(coord.getGdxVector2());
+			if(meet) mapEvent=event;
+		}
+		return mapEvent;
+	}
 	
 }

@@ -10,6 +10,7 @@ import java.util.HashMap;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -29,6 +30,7 @@ import zw.swd.gui.FightStatePanel;
 import zw.swd.gui.MagicTips;
 import zw.swd.gui.Paper;
 import zw.swd.gui.Picture;
+import zw.swd.gui.actions.EndFightAction;
 import zw.swd.main.App;
 import zw.swd.main.Cache;
 import zw.swd.math.Vector2;
@@ -109,6 +111,10 @@ public class FightScreen extends SWDScreen{
 	@Override
 	public boolean keyDown(int keycode) {
 		// TODO Auto-generated method stub
+		if(keycode==Keys.SPACE)
+			{
+			this.rootAction.addAction(new EndFightAction());
+			}
 		return false;
 	}
 
@@ -255,6 +261,11 @@ public class FightScreen extends SWDScreen{
 		{
 			this.guiMgr.findActorByName("fightcmdwindow").setVisible(false);
 		}
+	}
+	
+	public void backToSceneScreen()
+	{
+		
 	}
 
 }

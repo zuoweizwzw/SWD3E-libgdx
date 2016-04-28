@@ -44,6 +44,8 @@ public class MapEvent extends Sprite{
 	{
 		script=Cache.sceneScripts.get("1");
 		script.run(new SceneScriptsEngine());
+		
+		this.remove();
 	}
 	
 	public Rectangle getRect()

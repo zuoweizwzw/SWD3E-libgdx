@@ -12,6 +12,7 @@ import zw.swd.game.actions.ActorMoveAction;
 import zw.swd.game.actions.SceneActorMoveAction;
 import zw.swd.game.actions.SceneActorRunAction;
 import zw.swd.game.actions.SceneActorWalkAction;
+import zw.swd.game.event.MapEvent;
 import zw.swd.graphics.Sprite;
 import zw.swd.graphics.scene.SceneActor;
 import zw.swd.graphics.scene.SceneMap;
@@ -68,6 +69,10 @@ public class SceneScreen extends SWDScreen {
 		actor.setCoord(320, 240);
 
 		this.sceneMap.sprites.addActor(actor);
+		MapEvent mapEvent=new MapEvent();
+		mapEvent.setCoord(320, 200);
+		mapEvent.setSize(24, 24);
+		this.sceneMap.addMapEvent(mapEvent);
 		gui=GUI.getInstance();
 		this.guiMgr.addActor(gui);
 		gui.setVisible(false);

@@ -3,6 +3,7 @@ package zw.swd.game.actions;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Action;
 
+import zw.swd.game.event.MapEvent;
 import zw.swd.graphics.scene.SceneActor;
 import zw.swd.main.App;
 import zw.swd.math.Vector2;
@@ -12,7 +13,7 @@ import zw.swd.utils.Mappings;
 public class SceneActorRunAction extends SceneActorMoveAction{
 	public boolean half;
 	public SceneActor actor;
-	public int status=0;
+	public int status=0; //0正常，1？？？ 2停止
 	
 
 	public SceneActorRunAction(int direction, SceneActor actor) {
@@ -67,6 +68,7 @@ public class SceneActorRunAction extends SceneActorMoveAction{
 //					}
 //				}
 				
+				//检测碰触其它物体
 				App app=(App)Gdx.app.getApplicationListener();
 				SceneScreen screen=(SceneScreen) app.currentScreen;
 				boolean meetbarrier=screen.sceneMap.meetBarrier(this.actor, direction.mulNew(96*delta));
@@ -77,7 +79,15 @@ public class SceneActorRunAction extends SceneActorMoveAction{
 					return true;
 				}
 				
-//				boolean meetMapEvent=screen.sceneMap.meetMapEvent(this.actor, event)
+				//检测碰触事件
+				MapEvent mapEvent=screen.sceneMap.meetMapEvent(this.actor);
+				if(mapEvent!=null)
+				{
+					this.status=2;
+					this.actor.nextAni("stand_"+Mappings.getDirectionNameByDirection(this.direction));
+					mapEvent.trigger();
+					return true;
+				}
 				
 				this.actor.getCurrentAni().nextFrame(delta);
 				
