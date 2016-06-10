@@ -27,7 +27,8 @@ public class MapDefiner implements Screen, InputProcessor{
 	public int mapx,mapy;
 	public ShapeRenderer renderer;
 	MapData data;
-	String mapNum="1-1";
+	String mapNum="12-1";
+	public int size=1;
 	public MapDefiner(SpriteBatch batch) {
 		// TODO Auto-generated constructor stub
 		this.batch=batch;

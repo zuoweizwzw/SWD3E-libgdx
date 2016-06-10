@@ -1,5 +1,6 @@
 package zw.swd.game;
 
+//游戏中的Item
 public class GameItem {
 
 	public ItemModel itemModel;

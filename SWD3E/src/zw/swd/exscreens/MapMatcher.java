@@ -18,14 +18,16 @@ public class MapMatcher implements Screen,InputProcessor{
 	public MapMatcher(SpriteBatch batch) {
 		// TODO Auto-generated constructor stub
 		this.batch=batch;
-		this.map=new Texture(Gdx.files.absolute("F:\\SWD3E\\huge\\1-1\\1-1.png"));
-		this.control=new Texture(Gdx.files.absolute("F:\\SWD3E\\huge\\1-1\\1-8.png"));
+		this.map=new Texture(Gdx.files.absolute("F:\\SWD3E\\huge\\12-1\\12-1.png"));
+		this.control=new Texture(Gdx.files.absolute("F:\\SWD3E\\huge\\12-1\\12-6.png"));
 	}
 	@Override
 	public void render(float delta) {
 		// TODO Auto-generated method stub
+		batch.begin();
 	batch.draw(map, mapx, mapy);	
 	batch.draw(control,x+mapx,y+mapy);
+	batch.end();
 	}
 
 	@Override

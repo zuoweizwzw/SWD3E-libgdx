@@ -45,7 +45,7 @@ public class FightScreen extends SWDScreen{
 	public Group magicgroup=new Group();
 	public FightRole mouseRole;
 	public Battle battle=new Battle(this);
-	public int state=-1;//0选择命令，1选择攻击目标，2播放动画，3选择奇术，4选择奇术对象
+	public int state=-1;//-1系统中，0选择命令，1选择攻击目标，2播放动画，3选择奇术，4选择奇术对象
 	
 	@Override
 	public void render(float delta) {
@@ -264,6 +264,11 @@ public class FightScreen extends SWDScreen{
 	}
 	
 	public void backToSceneScreen()
+	{
+		
+	}
+	
+	public void showWinWindow()
 	{
 		
 	}

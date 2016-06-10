@@ -58,7 +58,7 @@ public class SWDList extends Paper{
 			SWDListItem item=null;
 			try {
 				Constructor<SWDListItem> c=(Constructor<SWDListItem>) clazz.getConstructor(int.class,int.class);
-				item=c.newInstance((int)this.getWidth()-16,heightperitem);				
+				item=c.newInstance((int)this.getWidth()-20,heightperitem);				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

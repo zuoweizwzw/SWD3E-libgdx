@@ -2,11 +2,16 @@ package zw.swd.game;
 
 import java.util.ArrayList;
 
+import zw.swd.main.Cache;
+import zw.swd.math.Vector2;
+
 public class GameModel {
 
 	public ArrayList<RoleModel> members=new ArrayList<>();
 	private ArrayList<GameItem> items=new ArrayList<>();
 	private static GameModel instance;
+	private Vector2 position=new Vector2();
+	private String mapId;
 	
 	public static GameModel getInstance()
 	{
@@ -54,6 +59,11 @@ public class GameModel {
 		}
 	}
 	
+	public void addItem(String id,int num)
+	{
+		ItemModel item=Cache.items.get(id);
+		this.addItem(item,num);
+	}
 	public void addItem(ItemModel model, int num)
 	{
 		boolean exist=false;

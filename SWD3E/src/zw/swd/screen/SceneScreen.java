@@ -61,7 +61,7 @@ public class SceneScreen extends SWDScreen {
 	public SceneScreen() {
 		// TODO Auto-generated constructor stub
 		super();
-		this.setSceneMap(MapLoader.loadSceneMap("1-1"));
+		this.setSceneMap("1-1");
 		
 		actor = new SceneActor("001");
 		actor.pool = SceneActorLoader.loadSceneActorAnis("001");
@@ -69,7 +69,7 @@ public class SceneScreen extends SWDScreen {
 		actor.setCoord(320, 240);
 
 		this.sceneMap.sprites.addActor(actor);
-		MapEvent mapEvent=new MapEvent();
+		MapEvent mapEvent=new MapEvent("2");
 		mapEvent.setCoord(320, 200);
 		mapEvent.setSize(24, 24);
 		this.sceneMap.addMapEvent(mapEvent);
@@ -237,7 +237,8 @@ public class SceneScreen extends SWDScreen {
 		return false;
 	}
 
-	public void setSceneMap(SceneMap sceneMap) {
+	public void setSceneMap(String mapId) {
+		SceneMap sceneMap=MapLoader.loadSceneMap(mapId);
 		this.sceneMap = sceneMap;
 		this.spriteMgr.removeActors(SceneMap.class);
 		this.spriteMgr.addActor(sceneMap);

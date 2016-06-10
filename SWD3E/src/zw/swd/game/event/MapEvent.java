@@ -21,6 +21,7 @@ import zw.swd.scene.scripts.SceneScriptsEngine;
 public class MapEvent extends Sprite{
 
 	SceneScript script;
+	String scriptId;
 	ShapeRenderer renderer=new ShapeRenderer();
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
@@ -40,9 +41,14 @@ public class MapEvent extends Sprite{
 		batch.begin();
 	}
 	
+	public MapEvent(String id)
+	{
+		this.scriptId=id;
+	}
+	
 	public void trigger()
 	{
-		script=Cache.sceneScripts.get("1");
+		script=Cache.sceneScripts.get(this.scriptId);
 		script.run(new SceneScriptsEngine());
 		
 		this.remove();

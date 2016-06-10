@@ -9,6 +9,7 @@ import org.lwjgl.input.Mouse;
 import org.newdawn.slick.opengl.CursorLoader;
 
 import zw.swd.exscreens.MapDefiner;
+import zw.swd.exscreens.MapMatcher;
 import zw.swd.game.GameModel;
 import zw.swd.screen.FightScreen;
 import zw.swd.screen.SWDScreen;
@@ -40,13 +41,13 @@ public class App extends Game{
 		
 		initGame();		
 		SceneScreen screen=new SceneScreen();
+		
 		screens.put("scene", screen);
 		Gdx.input.setInputProcessor(screen);
 		this.setScreen(screen);
 		this.currentScreen=screen;
 		Mouse.setClipMouseCoordinatesToWindow(true);
-		
-//		Mouse.setGrabbed(true);
+
 		try {
 			Cursor cursor=CursorLoader.get().getCursor("F:/SWD3E"+"\\gui\\37-1.png", 0, 0);
 			
@@ -59,7 +60,9 @@ public class App extends Game{
 			e.printStackTrace();
 		}
 		
-//		MapMatcher matcher=new MapMatcher(batch);
+		
+		
+//		MapMatcher matcher=new MapMatcher(new SpriteBatch());
 //		setScreen(matcher);
 //		Gdx.input.setInputProcessor(matcher);
 		
@@ -82,11 +85,13 @@ public class App extends Game{
 		FontLoader.loadFont();
 		
 		SceneEventsLoader.loadScripts("1");
+		SceneEventsLoader.loadScripts("2");
 //		SceneEventsLoader.loadScripts("methods");
 		FaceLoader.loadFaces();
 		MagicLoader.loadMagics("51","53");
 		ItemLoader.loadItems("0017","0004","0064","0170","0281","0284","0057","0224");
 		FightMapLoader.loadFightMap("1-1");
+
 		FightRoleLoader.loadFightRole("001");
 		FightRoleLoader.loadFightRole("002");
 		GUILoader.loadControls();

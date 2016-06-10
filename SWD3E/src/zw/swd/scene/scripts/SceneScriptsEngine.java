@@ -9,6 +9,7 @@ import zw.swd.action.SWDAction;
 import zw.swd.game.actions.AnimationAction;
 import zw.swd.game.actions.SceneActorRunAction;
 import zw.swd.game.actions.SceneActorWalkAction;
+import zw.swd.game.fight.actions.ChangeMapAction;
 import zw.swd.gui.GuiMgr;
 import zw.swd.gui.actions.CloseDialogAction;
 import zw.swd.gui.actions.OpenDialogAction;
@@ -74,6 +75,12 @@ public class SceneScriptsEngine {
 	public Action startfight(String fightmodel)
 	{
 		Action action=new StartFightAction(screen);
+		return action;
+	}
+	
+	public Action changemap(String mapId,int x, int y)
+	{
+		Action action=new ChangeMapAction(mapId, x, y);
 		return action;
 	}
 	

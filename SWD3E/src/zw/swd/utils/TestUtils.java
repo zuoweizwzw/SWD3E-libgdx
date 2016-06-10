@@ -53,7 +53,7 @@ public class TestUtils {
 		{
 			model.name="于小雪";
 			model.description="游戏主角";
-			model.hp=1200;
+			model.hp=300;
 			model.hp_max=1600;
 			model.mp=400;
 			model.mp_max=400;
@@ -76,16 +76,9 @@ public class TestUtils {
 	public static GameModel generateTestGameModel()
 	{
 		GameModel gameModel=GameModel.getInstance();
-		gameModel.members.add(generateRoleModel("001"));
-		for(int i=0;i<16;i++)
-		{
-		GameItem gameItem=new GameItem(Cache.items.get("0017"));
-		gameModel.addItem(gameItem);
-		}
-		GameItem gameItem=new GameItem(Cache.items.get("0004"));
-		gameModel.addItem(gameItem);
-		
-		
+		gameModel.members.add(generateRoleModel("001"));		
+		gameModel.addItem(new GameItem(Cache.items.get("0017")));				
+		gameModel.addItem(new GameItem(Cache.items.get("0004")));		
 		gameModel.addItem(new GameItem(Cache.items.get("0064")));
 		gameModel.addItem(new GameItem(Cache.items.get("0284")));
 		gameModel.addItem(new GameItem(Cache.items.get("0170")));

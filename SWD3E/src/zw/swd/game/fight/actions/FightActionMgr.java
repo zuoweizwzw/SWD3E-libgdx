@@ -53,7 +53,7 @@ public class FightActionMgr {
 		source.addSequenceAction(new FightRoleBackAction(source,source.getFightAnimation("back")));
 		source.addSequenceAction(new ChangeStateAction(fightScreen,-1));
 		source.addSequenceAction(new AnimationAction(source,source.getFightAnimation("stand")).setLoop(true));
-		
+		source.addSequenceAction(new FightSystemCheckAction(fightScreen));
 		AttackEventTrigger trigger=new AttackEventTrigger(attack,target,skill);
 		this.triggers.add(trigger);
 		

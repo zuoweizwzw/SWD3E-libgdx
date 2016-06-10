@@ -50,6 +50,6 @@ public class Cursor {
 		cur1.hotspot.set(16,16);
 		cursors.put("1", cur1);
 		
-		setCursor(0);
+		setCursor(1);
 	}
 }
