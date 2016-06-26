@@ -86,6 +86,7 @@ public class App extends Game{
 		
 		SceneEventsLoader.loadScripts("1");
 		SceneEventsLoader.loadScripts("2");
+		SceneEventsLoader.loadScripts("3");
 //		SceneEventsLoader.loadScripts("methods");
 		FaceLoader.loadFaces();
 		MagicLoader.loadMagics("51","53");

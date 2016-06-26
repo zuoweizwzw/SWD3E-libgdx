@@ -69,10 +69,10 @@ public class SceneScreen extends SWDScreen {
 		actor.setCoord(320, 240);
 
 		this.sceneMap.sprites.addActor(actor);
-		MapEvent mapEvent=new MapEvent("2");
-		mapEvent.setCoord(320, 200);
-		mapEvent.setSize(24, 24);
-		this.sceneMap.addMapEvent(mapEvent);
+//		MapEvent mapEvent=new MapEvent("2");
+//		mapEvent.setCoord(320, 200);
+//		mapEvent.setSize(24, 24);
+//		this.sceneMap.addMapEvent(mapEvent);
 		gui=GUI.getInstance();
 		this.guiMgr.addActor(gui);
 		gui.setVisible(false);

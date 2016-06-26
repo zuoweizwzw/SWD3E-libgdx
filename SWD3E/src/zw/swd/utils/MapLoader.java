@@ -3,7 +3,9 @@ package zw.swd.utils;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
 
+import zw.swd.game.event.MapEvent;
 import zw.swd.graphics.Sprite;
 import zw.swd.graphics.scene.SceneMap;
 import zw.swd.main.Config;
@@ -20,7 +22,9 @@ public class MapLoader {
 		
 		File dataConfig=new File(Config.resPath+"\\huge\\"+mapNum+"\\"+mapNum+"_data.txt");
 		
+		File mapEventsPath=new File(Config.resPath+"\\events\\mapEvents\\"+mapNum+".txt");
 		map.data=loadData(dataConfig);
+		loadMapEvents(map, mapEventsPath);
 		
 		try
 		{
@@ -46,8 +50,6 @@ public class MapLoader {
 		{
 			e.printStackTrace();
 		}
-		
-		
 		return map;
 	}
 	
@@ -86,5 +88,31 @@ public class MapLoader {
 		}
 		
 		return data;
+	}
+	
+	public static void loadMapEvents(SceneMap map,File path)
+	{
+		ArrayList<MapEvent> mapEvents=new ArrayList<>();
+		try
+		{
+			BufferedReader br=new BufferedReader(new FileReader(path));
+			String line="";
+			while((line=br.readLine())!=null)
+			{
+				String[] strs=line.split(" ");
+				String eventNum=strs[0];
+				MapEvent mapEvent=new MapEvent(eventNum);
+				
+				mapEvent.setCoord(Integer.parseInt(strs[1].split(",")[0]), Integer.parseInt(strs[1].split(",")[1]));
+				mapEvent.setSize(Integer.parseInt(strs[2].split(",")[0]), Integer.parseInt(strs[2].split(",")[1]));
+				map.addMapEvent(mapEvent);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		
 	}
 }
